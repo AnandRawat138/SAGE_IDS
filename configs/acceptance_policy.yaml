@@ -1,0 +1,20 @@
+# Acceptance POLICY (fixed a priori). Concrete numeric criteria for a case are DERIVED from the
+# measured baseline using these rules, then frozen and hash-committed before any candidate is
+# evaluated (see sage_ids/evaluation/acceptance.py). Changing this file changes future cases only.
+trigger_min_detection_gain: 0.30          # absolute gain over the baseline version on the same retest trials
+trigger_mcnemar_alpha: 0.05               # paired exact McNemar test, one-sided (candidate > baseline)
+trigger_min_detection_rate_lcb: 0.70      # Wilson 95% lower bound of candidate detection rate
+regression_noninferiority_margin: 0.10    # previously passed scenarios: candidate >= baseline - margin
+benign_fpr_margin: 0.02                   # benign window FPR max = measured baseline FPR + margin
+benign_denied_margin: 0.01                # benign requests denied (423/429) max = baseline + margin
+effect_must_not_increase: true            # security-effect rate may not exceed baseline + effect_tolerance
+effect_tolerance: 0.10
+require_service_health: true
+max_execution_failure_rate: 0.10          # above this the retest is INCONCLUSIVE, not a pass/fail
+# Prevention objective (weakness = security effect achieved while detection was already adequate):
+prevention_min_effect_reduction: 0.30     # absolute reduction of the security-effect rate vs baseline
+prevention_fisher_alpha: 0.05             # one-sided Fisher exact test, baseline effect rate > candidate
+# Weakness confirmation after the baseline test
+weakness_min_detection_gap: 0.20          # fraction of executed trials not detected
+weakness_min_effect_rate: 0.20            # fraction of executed trials achieving the security effect
+regression_pass_threshold: 0.80           # a scenario counts as "previously passed" at >= this detection rate

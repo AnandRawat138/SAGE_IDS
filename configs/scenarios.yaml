@@ -1,0 +1,62 @@
+# Approved laboratory scenario catalogue. Only these scenarios can ever be executed.
+# Executors are fixed Python functions in sage_ids/lab/scenarios.py; nothing retrieved from the
+# internet or produced by an LLM is executed. Parameters are clamped to [min, max].
+- id: recon-tcp-probe
+  name: Synthetic TCP service-discovery probe
+  technique: T1046
+  target_asset: lab-decoy-host
+  executor: recon_probe
+  description: >
+    Sequential TCP connect() probes against a bounded set of allowlisted laboratory ports to
+    enumerate listening services. No payloads are sent.
+  preconditions: ["active lab enabled", "target resolves inside allowlist", "decoy listeners healthy"]
+  params:
+    - {name: n_ports, type: int, default: 12, min: 4, max: 16}
+    - {name: inter_probe_ms, type: int, default: 10, min: 0, max: 50}
+  limits: {max_connections: 16, max_seconds: 8}
+  expected_observations: ["many distinct destination ports from one source within one window"]
+  effect_criterion: "at least 3 listening ports enumerated by the probe"
+  cleanup: ["close all sockets", "reset lab service state"]
+  stop_conditions: ["connection budget reached", "time limit reached", "cancellation requested", "allowlist violation"]
+  reviewed_by: "project team (lab catalogue v1)"
+  reviewed_on: "2026-10-30"
+
+- id: auth-password-guessing
+  name: Repeated failed logins against dummy login service
+  technique: T1110.001
+  target_asset: lab-login-service
+  executor: auth_guessing
+  description: >
+    Password guessing against the dummy lab account using a fixed, built-in lab wordlist.
+    The lab account's password is placed at a random position of the guessing sequence.
+  preconditions: ["active lab enabled", "dummy login service healthy", "dummy lab account present"]
+  params:
+    - {name: n_attempts, type: int, default: 25, min: 8, max: 40}
+    - {name: delay_ms, type: int, default: 10, min: 0, max: 60}
+  limits: {max_requests: 40, max_seconds: 8}
+  expected_observations: ["burst of HTTP 401 responses to one source", "possible HTTP 423 if lockout is enabled"]
+  effect_criterion: "a guessed credential obtains HTTP 200 (successful authentication)"
+  cleanup: ["reset failure counters and lockouts", "close sockets"]
+  stop_conditions: ["credential found", "request budget reached", "time limit reached", "cancellation requested"]
+  reviewed_by: "project team (lab catalogue v1)"
+  reviewed_on: "2026-10-30"
+
+- id: app-request-flood
+  name: Abnormal request rate against local test application
+  technique: T1499.002
+  target_asset: lab-test-app
+  executor: request_flood
+  description: >
+    Bounded burst of HTTP GET requests from one source using a small worker pool,
+    to test whether the test application throttles abusive request rates.
+  preconditions: ["active lab enabled", "test application healthy"]
+  params:
+    - {name: n_requests, type: int, default: 250, min: 60, max: 400}
+    - {name: workers, type: int, default: 6, min: 2, max: 8}
+  limits: {max_requests: 400, max_seconds: 10}
+  expected_observations: ["very high request rate from one source", "HTTP 429 if rate limiting is enabled"]
+  effect_criterion: "at least 90% of requests served with HTTP 200 at >= 50 requests/s (no throttling)"
+  cleanup: ["reset rate-limit windows", "close sockets"]
+  stop_conditions: ["request budget reached", "time limit reached", "cancellation requested"]
+  reviewed_by: "project team (lab catalogue v1)"
+  reviewed_on: "2026-10-30"

@@ -1,0 +1,58 @@
+# SAGE-IDS main configuration (no secrets here; secrets come from environment, see .env.example)
+database_url: "sqlite:///data/sage_ids.db"
+artifacts_dir: "artifacts"
+reports_dir: "reports"
+cache_dir: "data/cache"
+
+api:
+  host: "127.0.0.1"          # bind locally by default
+  port: 8000
+
+lab:
+  # Active laboratory scenarios are OPT-IN. Set SAGE_ENABLE_ACTIVE_LAB=1 or set this to true.
+  active_scenarios_enabled: false
+  # Target allowlist. Enforced in code (sage_ids/security/allowlist.py) on every socket
+  # connect performed by scenario executors -- never via LLM prompts.
+  allowed_target_cidrs: ["127.0.0.1/32"]
+  # Source addresses the lab traffic generators may bind (loopback aliases).
+  attacker_source_cidr: "127.0.2.0/24"
+  benign_source_cidr: "127.0.1.0/24"
+  allowed_target_ports: [18081, 18082, 18100, 18101, 18102, 18103, 18104, 18105, 18106, 18107,
+                         18108, 18109, 18110, 18111, 18112, 18113, 18114, 18115]
+  login_service_port: 18081
+  test_app_port: 18082
+  decoy_ports: [18100, 18101, 18102, 18103, 18104, 18105]   # listening "open" decoy ports
+  probe_ports_max: 16
+  max_requests_per_trial: 400
+  max_trial_seconds: 10.0
+  connect_timeout_s: 0.5
+
+monitoring:
+  window_seconds: 5.0
+  feature_schema_version: "lab-v1"
+
+coordinator:
+  max_retries: 2
+  max_adaptation_cycles: 4
+  running_timeout_s: 900
+
+experiment:
+  baseline_trials: 30
+  retest_trials: 30
+  benign_windows_per_phase: 6    # rounds of concurrent benign users per phase
+  benign_users: 8
+  base_seed: 20261030
+
+llm:
+  provider: "none"           # none | ollama | anthropic   (none = deterministic fallback)
+  model: ""
+  timeout_s: 30
+
+threat_research:
+  nvd_api_url: "https://services.nvd.nist.gov/rest/json/cves/2.0"
+  attack_stix_url: "https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json"
+  http_timeout_s: 20
+  cache_ttl_s: 86400
+  min_interval_s: 6.5          # NVD public rate limit is 5 requests / 30 s without an API key
+  newly_published_days: 30
+  max_results_per_query: 20

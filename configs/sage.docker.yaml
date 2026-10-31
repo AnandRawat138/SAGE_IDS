@@ -1,0 +1,16 @@
+# Configuration for the Docker laboratory (template; see docker/docker-compose.yml).
+database_url: "sqlite:///data/sage_ids_docker.db"
+artifacts_dir: "artifacts"
+reports_dir: "reports"
+cache_dir: "data/cache"
+api: {host: "0.0.0.0", port: 8000}
+lab:
+  active_scenarios_enabled: false          # still opt-in via SAGE_ENABLE_ACTIVE_LAB=1
+  allowed_target_cidrs: ["172.30.0.10/32"]  # the lab-targets container only
+  attacker_source_cidr: "172.30.0.64/27"
+  benign_source_cidr: "172.30.0.128/27"
+  allowed_target_ports: [18081, 18082, 18100, 18101, 18102, 18103, 18104, 18105, 18106, 18107,
+                         18108, 18109, 18110, 18111, 18112, 18113, 18114, 18115]
+  login_service_port: 18081
+  test_app_port: 18082
+  decoy_ports: [18100, 18101, 18102, 18103, 18104, 18105]

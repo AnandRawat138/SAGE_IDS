@@ -1,0 +1,54 @@
+{
+  "cases": {
+    "A_password_guessing": {
+      "case_id": 1,
+      "final_state": "accepted",
+      "tried": [
+        {
+          "proposal_id": 2,
+          "title": "Maximum-sensitivity rule on n_auth_fail (>= 1)",
+          "result_state": "remediation_proposed"
+        },
+        {
+          "proposal_id": 3,
+          "title": "Calibrated rule + lab service hardening (login_lockout_threshold=5)",
+          "result_state": "acceptance_pending"
+        }
+      ],
+      "accepted_version": 3,
+      "wall_s": 78767.7
+    },
+    "B_request_flood": {
+      "case_id": 2,
+      "final_state": "accepted",
+      "tried": [
+        {
+          "proposal_id": 8,
+          "title": "Retrain Random Forest with verified labels from executed baseline trials",
+          "result_state": "acceptance_pending"
+        }
+      ],
+      "accepted_version": 4,
+      "wall_s": 173.5
+    },
+    "C_recon": {
+      "case_id": 6,
+      "final_state": "rejected",
+      "tried": [
+        {
+          "proposal_id": 9,
+          "title": "Calibrated threshold rule on n_distinct_dst_ports (>= 3)",
+          "result_state": "remediation_proposed"
+        },
+        {
+          "proposal_id": 11,
+          "title": "Retrain Random Forest with verified labels from executed baseline trials",
+          "result_state": "remediation_proposed"
+        }
+      ],
+      "accepted_version": null,
+      "wall_s": 346.0
+    }
+  },
+  "report": "E:\\SAGE-IDS\\reports\\experiment_report.md"
+}

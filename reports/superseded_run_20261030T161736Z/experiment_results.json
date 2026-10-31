@@ -1,0 +1,3029 @@
+{
+  "generated_at": "2026-10-30T16:36:54.813534+00:00",
+  "database": "E:\\SAGE-IDS\\data\\experiment_20261030T161736Z.db",
+  "environment": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "cpu_count": 16,
+    "config_hash": "3cbb671937a5c07294a59f253fca022b0c6cc06a5cecae4efc07b9f154973ec5",
+    "base_seed": 20261030
+  },
+  "scope": {
+    "lab": "loopback services + application-level sensor + synthetic benign generator",
+    "threat_intel": "synthetic fixtures (SYNTH- IDs) drive the cases",
+    "operator": "scripted (operator:demo-script); candidate order fixed in advance",
+    "trials_per_phase": 30,
+    "benign_rounds_per_phase": 6,
+    "benign_users": 8,
+    "window_seconds": 5.0
+  },
+  "log": [
+    "bootstrap v1 (120s)",
+    "case 1: baseline -> remediation_proposed (91s)",
+    "case 1: candidate from proposal 2 (Maximum-sensitivity rule on n_auth_fail (>= 1)) -> remediation_proposed (182s)",
+    "case 1: candidate from proposal 3 (Calibrated rule + lab service hardening (login_lockout_threshold=5)) -> remediation_proposed (273s)",
+    "case 1: candidate from proposal 1 (Calibrated threshold rule on n_auth_fail (>= 3)) -> acceptance_pending (367s)",
+    "case 2: baseline -> remediation_proposed (88s)",
+    "case 2: candidate from proposal 8 (Retrain Random Forest with verified labels from executed baseline trials) -> acceptance_pending (170s)",
+    "case 6: baseline -> remediation_proposed (108s)",
+    "case 6: candidate from proposal 9 (Calibrated threshold rule on n_distinct_dst_ports (>= 3)) -> remediation_proposed (220s)",
+    "case 6: candidate from proposal 11 (Retrain Random Forest with verified labels from executed baseline trials) -> remediation_proposed (335s)",
+    "rollback: active v5 -> v4",
+    "final test (166s)"
+  ],
+  "cases": {
+    "A_password_guessing": {
+      "case_id": 1,
+      "final_state": "accepted",
+      "tried": [
+        {
+          "proposal_id": 2,
+          "title": "Maximum-sensitivity rule on n_auth_fail (>= 1)",
+          "result_state": "remediation_proposed"
+        },
+        {
+          "proposal_id": 3,
+          "title": "Calibrated rule + lab service hardening (login_lockout_threshold=5)",
+          "result_state": "remediation_proposed"
+        },
+        {
+          "proposal_id": 1,
+          "title": "Calibrated threshold rule on n_auth_fail (>= 3)",
+          "result_state": "acceptance_pending"
+        }
+      ],
+      "accepted_version": 4,
+      "wall_s": 367.3
+    },
+    "B_request_flood": {
+      "case_id": 2,
+      "final_state": "accepted",
+      "tried": [
+        {
+          "proposal_id": 8,
+          "title": "Retrain Random Forest with verified labels from executed baseline trials",
+          "result_state": "acceptance_pending"
+        }
+      ],
+      "accepted_version": 5,
+      "wall_s": 169.7
+    },
+    "C_recon": {
+      "case_id": 6,
+      "final_state": "remediation_proposed",
+      "tried": [
+        {
+          "proposal_id": 9,
+          "title": "Calibrated threshold rule on n_distinct_dst_ports (>= 3)",
+          "result_state": "remediation_proposed"
+        },
+        {
+          "proposal_id": 11,
+          "title": "Retrain Random Forest with verified labels from executed baseline trials",
+          "result_state": "remediation_proposed"
+        }
+      ],
+      "accepted_version": null,
+      "wall_s": 334.9
+    }
+  },
+  "case_states": [
+    {
+      "id": 1,
+      "finding": "finding:nvd:SYNTH-2026-0001",
+      "scenario": "auth-password-guessing",
+      "state": "accepted",
+      "cycles": 3
+    },
+    {
+      "id": 2,
+      "finding": "finding:nvd:SYNTH-2026-0002",
+      "scenario": "app-request-flood",
+      "state": "accepted",
+      "cycles": 1
+    },
+    {
+      "id": 3,
+      "finding": "finding:nvd:SYNTH-2025-0107",
+      "scenario": "auth-password-guessing",
+      "state": "scenario_pending_review",
+      "cycles": 0
+    },
+    {
+      "id": 4,
+      "finding": "finding:nvd:SYNTH-2026-0003",
+      "scenario": null,
+      "state": "not_relevant",
+      "cycles": 0
+    },
+    {
+      "id": 5,
+      "finding": "finding:nvd:SYNTH-2026-0004",
+      "scenario": "auth-password-guessing",
+      "state": "rejected",
+      "cycles": 0
+    },
+    {
+      "id": 6,
+      "finding": "finding:mitre_attack:T1046",
+      "scenario": "recon-tcp-probe",
+      "state": "remediation_proposed",
+      "cycles": 2
+    },
+    {
+      "id": 7,
+      "finding": "finding:mitre_attack:T1110.001",
+      "scenario": "auth-password-guessing",
+      "state": "scenario_pending_review",
+      "cycles": 0
+    },
+    {
+      "id": 8,
+      "finding": "finding:mitre_attack:T1499.002",
+      "scenario": "app-request-flood",
+      "state": "scenario_pending_review",
+      "cycles": 0
+    }
+  ],
+  "evaluations": [
+    {
+      "id": 1,
+      "case_id": 1,
+      "candidate": 2,
+      "passed": false,
+      "inconclusive": false,
+      "checks": [
+        {
+          "name": "trigger_detection_gain",
+          "value": 0.9333333333333333,
+          "required": ">= 0.3",
+          "passed": true
+        },
+        {
+          "name": "trigger_mcnemar_p",
+          "value": 3.725290298461914e-09,
+          "required": "< 0.05",
+          "passed": true,
+          "detail": {
+            "b_candidate_only": 28,
+            "c_baseline_only": 0,
+            "discordant": 28,
+            "p_value": 3.725290298461914e-09,
+            "alternative": "greater"
+          }
+        },
+        {
+          "name": "trigger_detection_rate_lcb",
+          "value": 0.7867654148312584,
+          "required": ">= 0.7",
+          "passed": true,
+          "detail": {
+            "rate": 0.9333333333333333,
+            "ci": [
+              0.7867654148312584,
+              0.9815229763754831
+            ],
+            "baseline_rate_same_trials": 0.0
+          }
+        },
+        {
+          "name": "effect_rate_not_increased",
+          "value": 1.0,
+          "required": "<= 1.000 + 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_effect_rate": 1.0
+          }
+        },
+        {
+          "name": "regression:recon-tcp-probe",
+          "value": 1.0,
+          "required": ">= 1.000 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 1.0,
+            "n": 15
+          }
+        },
+        {
+          "name": "benign_fpr",
+          "value": 0.26153846153846155,
+          "required": "<= 0.02",
+          "passed": false,
+          "detail": {
+            "windows": 65,
+            "alert_windows": 17,
+            "baseline_version_fpr_same_windows": 0.0
+          }
+        },
+        {
+          "name": "benign_denied_rate",
+          "value": 0.0,
+          "required": "<= 0.01",
+          "passed": true
+        },
+        {
+          "name": "service_health",
+          "value": {
+            "login": true,
+            "test_app": true
+          },
+          "required": "all healthy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "case_id": 1,
+      "candidate": 3,
+      "passed": false,
+      "inconclusive": false,
+      "checks": [
+        {
+          "name": "trigger_detection_gain",
+          "value": 0.8,
+          "required": ">= 0.3",
+          "passed": true
+        },
+        {
+          "name": "trigger_mcnemar_p",
+          "value": 5.960464477539063e-08,
+          "required": "< 0.05",
+          "passed": true,
+          "detail": {
+            "b_candidate_only": 24,
+            "c_baseline_only": 0,
+            "discordant": 24,
+            "p_value": 5.960464477539063e-08,
+            "alternative": "greater"
+          }
+        },
+        {
+          "name": "trigger_detection_rate_lcb",
+          "value": 0.6269430343619583,
+          "required": ">= 0.7",
+          "passed": false,
+          "detail": {
+            "rate": 0.8,
+            "ci": [
+              0.6269430343619583,
+              0.9049489287811706
+            ],
+            "baseline_rate_same_trials": 0.0
+          }
+        },
+        {
+          "name": "effect_rate_not_increased",
+          "value": 0.23333333333333334,
+          "required": "<= 1.000 + 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_effect_rate": 1.0
+          }
+        },
+        {
+          "name": "regression:recon-tcp-probe",
+          "value": 0.9333333333333333,
+          "required": ">= 0.933 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 0.9333333333333333,
+            "n": 15
+          }
+        },
+        {
+          "name": "benign_fpr",
+          "value": 0.0,
+          "required": "<= 0.02",
+          "passed": true,
+          "detail": {
+            "windows": 61,
+            "alert_windows": 0,
+            "baseline_version_fpr_same_windows": 0.0
+          }
+        },
+        {
+          "name": "benign_denied_rate",
+          "value": 0.0,
+          "required": "<= 0.01",
+          "passed": true
+        },
+        {
+          "name": "service_health",
+          "value": {
+            "login": true,
+            "test_app": true
+          },
+          "required": "all healthy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "case_id": 1,
+      "candidate": 4,
+      "passed": true,
+      "inconclusive": false,
+      "checks": [
+        {
+          "name": "trigger_detection_gain",
+          "value": 0.9666666666666667,
+          "required": ">= 0.3",
+          "passed": true
+        },
+        {
+          "name": "trigger_mcnemar_p",
+          "value": 1.862645149230957e-09,
+          "required": "< 0.05",
+          "passed": true,
+          "detail": {
+            "b_candidate_only": 29,
+            "c_baseline_only": 0,
+            "discordant": 29,
+            "p_value": 1.862645149230957e-09,
+            "alternative": "greater"
+          }
+        },
+        {
+          "name": "trigger_detection_rate_lcb",
+          "value": 0.8332960885388428,
+          "required": ">= 0.7",
+          "passed": true,
+          "detail": {
+            "rate": 0.9666666666666667,
+            "ci": [
+              0.8332960885388428,
+              0.9940914096838022
+            ],
+            "baseline_rate_same_trials": 0.0
+          }
+        },
+        {
+          "name": "effect_rate_not_increased",
+          "value": 1.0,
+          "required": "<= 1.000 + 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_effect_rate": 1.0
+          }
+        },
+        {
+          "name": "regression:recon-tcp-probe",
+          "value": 1.0,
+          "required": ">= 1.000 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 1.0,
+            "n": 15
+          }
+        },
+        {
+          "name": "benign_fpr",
+          "value": 0.0,
+          "required": "<= 0.02",
+          "passed": true,
+          "detail": {
+            "windows": 61,
+            "alert_windows": 0,
+            "baseline_version_fpr_same_windows": 0.0
+          }
+        },
+        {
+          "name": "benign_denied_rate",
+          "value": 0.0,
+          "required": "<= 0.01",
+          "passed": true
+        },
+        {
+          "name": "service_health",
+          "value": {
+            "login": true,
+            "test_app": true
+          },
+          "required": "all healthy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "case_id": 2,
+      "candidate": 5,
+      "passed": true,
+      "inconclusive": false,
+      "checks": [
+        {
+          "name": "trigger_detection_gain",
+          "value": 1.0,
+          "required": ">= 0.3",
+          "passed": true
+        },
+        {
+          "name": "trigger_mcnemar_p",
+          "value": 9.313225746154785e-10,
+          "required": "< 0.05",
+          "passed": true,
+          "detail": {
+            "b_candidate_only": 30,
+            "c_baseline_only": 0,
+            "discordant": 30,
+            "p_value": 9.313225746154785e-10,
+            "alternative": "greater"
+          }
+        },
+        {
+          "name": "trigger_detection_rate_lcb",
+          "value": 0.886486605238548,
+          "required": ">= 0.7",
+          "passed": true,
+          "detail": {
+            "rate": 1.0,
+            "ci": [
+              0.886486605238548,
+              1.0
+            ],
+            "baseline_rate_same_trials": 0.0
+          }
+        },
+        {
+          "name": "effect_rate_not_increased",
+          "value": 1.0,
+          "required": "<= 1.000 + 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_effect_rate": 1.0
+          }
+        },
+        {
+          "name": "regression:recon-tcp-probe",
+          "value": 1.0,
+          "required": ">= 1.000 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 1.0,
+            "n": 15
+          }
+        },
+        {
+          "name": "benign_fpr",
+          "value": 0.0,
+          "required": "<= 0.02",
+          "passed": true,
+          "detail": {
+            "windows": 62,
+            "alert_windows": 0,
+            "baseline_version_fpr_same_windows": 0.0
+          }
+        },
+        {
+          "name": "benign_denied_rate",
+          "value": 0.0,
+          "required": "<= 0.01",
+          "passed": true
+        },
+        {
+          "name": "service_health",
+          "value": {
+            "login": true,
+            "test_app": true
+          },
+          "required": "all healthy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "case_id": 6,
+      "candidate": 6,
+      "passed": false,
+      "inconclusive": false,
+      "checks": [
+        {
+          "name": "trigger_detection_gain",
+          "value": 0.0,
+          "required": ">= 0.3",
+          "passed": false
+        },
+        {
+          "name": "trigger_mcnemar_p",
+          "value": 1.0,
+          "required": "< 0.05",
+          "passed": false,
+          "detail": {
+            "b_candidate_only": 0,
+            "c_baseline_only": 0,
+            "discordant": 0,
+            "p_value": 1.0,
+            "alternative": "greater"
+          }
+        },
+        {
+          "name": "trigger_detection_rate_lcb",
+          "value": 0.886486605238548,
+          "required": ">= 0.7",
+          "passed": true,
+          "detail": {
+            "rate": 1.0,
+            "ci": [
+              0.886486605238548,
+              1.0
+            ],
+            "baseline_rate_same_trials": 1.0
+          }
+        },
+        {
+          "name": "effect_rate_not_increased",
+          "value": 0.8333333333333334,
+          "required": "<= 0.700 + 0.1",
+          "passed": false,
+          "detail": {
+            "baseline_effect_rate": 0.7
+          }
+        },
+        {
+          "name": "regression:auth-password-guessing",
+          "value": 0.9333333333333333,
+          "required": ">= 0.933 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 0.9333333333333333,
+            "n": 15
+          }
+        },
+        {
+          "name": "regression:app-request-flood",
+          "value": 1.0,
+          "required": ">= 1.000 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 1.0,
+            "n": 15
+          }
+        },
+        {
+          "name": "benign_fpr",
+          "value": 0.0,
+          "required": "<= 0.02",
+          "passed": true,
+          "detail": {
+            "windows": 67,
+            "alert_windows": 0,
+            "baseline_version_fpr_same_windows": 0.0
+          }
+        },
+        {
+          "name": "benign_denied_rate",
+          "value": 0.0,
+          "required": "<= 0.01",
+          "passed": true
+        },
+        {
+          "name": "service_health",
+          "value": {
+            "login": true,
+            "test_app": true
+          },
+          "required": "all healthy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "case_id": 6,
+      "candidate": 7,
+      "passed": false,
+      "inconclusive": false,
+      "checks": [
+        {
+          "name": "trigger_detection_gain",
+          "value": 0.0,
+          "required": ">= 0.3",
+          "passed": false
+        },
+        {
+          "name": "trigger_mcnemar_p",
+          "value": 1.0,
+          "required": "< 0.05",
+          "passed": false,
+          "detail": {
+            "b_candidate_only": 0,
+            "c_baseline_only": 0,
+            "discordant": 0,
+            "p_value": 1.0,
+            "alternative": "greater"
+          }
+        },
+        {
+          "name": "trigger_detection_rate_lcb",
+          "value": 0.8332960885388428,
+          "required": ">= 0.7",
+          "passed": true,
+          "detail": {
+            "rate": 0.9666666666666667,
+            "ci": [
+              0.8332960885388428,
+              0.9940914096838022
+            ],
+            "baseline_rate_same_trials": 0.9666666666666667
+          }
+        },
+        {
+          "name": "effect_rate_not_increased",
+          "value": 0.6333333333333333,
+          "required": "<= 0.700 + 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_effect_rate": 0.7
+          }
+        },
+        {
+          "name": "regression:auth-password-guessing",
+          "value": 0.8,
+          "required": ">= 0.800 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 0.8,
+            "n": 15
+          }
+        },
+        {
+          "name": "regression:app-request-flood",
+          "value": 1.0,
+          "required": ">= 1.000 - 0.1",
+          "passed": true,
+          "detail": {
+            "baseline_rate_same_trials": 1.0,
+            "n": 15
+          }
+        },
+        {
+          "name": "benign_fpr",
+          "value": 0.0,
+          "required": "<= 0.02",
+          "passed": true,
+          "detail": {
+            "windows": 67,
+            "alert_windows": 0,
+            "baseline_version_fpr_same_windows": 0.0
+          }
+        },
+        {
+          "name": "benign_denied_rate",
+          "value": 0.0,
+          "required": "<= 0.01",
+          "passed": true
+        },
+        {
+          "name": "service_health",
+          "value": {
+            "login": true,
+            "test_app": true
+          },
+          "required": "all healthy",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "baselines": {
+    "1": {
+      "trigger": {
+        "scenario_id": "auth-password-guessing",
+        "n_trials": 30,
+        "n_executed": 30,
+        "n_effect": 30,
+        "run_ids": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60
+        ],
+        "detected": {
+          "1": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "latency_s": {
+          "1": []
+        }
+      },
+      "regression": {
+        "recon-tcp-probe": {
+          "n_executed": 15,
+          "run_ids": [
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75
+          ],
+          "detected": {
+            "1": [
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ]
+          }
+        },
+        "app-request-flood": {
+          "n_executed": 15,
+          "run_ids": [
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "detected": {
+            "1": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        }
+      },
+      "benign": {
+        "n_windows": 65,
+        "alert_windows": {
+          "1": 0
+        },
+        "requests": 551,
+        "denied": 0,
+        "run_ids": [
+          91,
+          92,
+          93,
+          94,
+          95,
+          96
+        ]
+      },
+      "health": {
+        "login": true,
+        "test_app": true
+      },
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "n_events": 4162,
+      "n_windows": 129,
+      "regression_set": [
+        "recon-tcp-probe"
+      ]
+    },
+    "2": {
+      "trigger": {
+        "scenario_id": "app-request-flood",
+        "n_trials": 30,
+        "n_executed": 30,
+        "n_effect": 30,
+        "run_ids": [
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          276,
+          277,
+          278,
+          279
+        ],
+        "detected": {
+          "4": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "latency_s": {
+          "4": []
+        }
+      },
+      "regression": {
+        "recon-tcp-probe": {
+          "n_executed": 15,
+          "run_ids": [
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            286,
+            287,
+            288,
+            289,
+            290,
+            291,
+            292,
+            293,
+            294
+          ],
+          "detected": {
+            "4": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              false,
+              true,
+              true,
+              true,
+              true
+            ]
+          }
+        },
+        "auth-password-guessing": {
+          "n_executed": 15,
+          "run_ids": [
+            295,
+            296,
+            297,
+            298,
+            299,
+            300,
+            301,
+            302,
+            303,
+            304,
+            305,
+            306,
+            307,
+            308,
+            309
+          ],
+          "detected": {
+            "4": [
+              true,
+              false,
+              true,
+              false,
+              true,
+              true,
+              true,
+              true,
+              false,
+              true,
+              true,
+              false,
+              true,
+              true,
+              true
+            ]
+          }
+        }
+      },
+      "benign": {
+        "n_windows": 64,
+        "alert_windows": {
+          "4": 0
+        },
+        "requests": 514,
+        "denied": 0,
+        "run_ids": [
+          310,
+          311,
+          312,
+          313,
+          314,
+          315
+        ]
+      },
+      "health": {
+        "login": true,
+        "test_app": true
+      },
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "n_events": 7897,
+      "n_windows": 124,
+      "regression_set": [
+        "recon-tcp-probe"
+      ]
+    },
+    "6": {
+      "trigger": {
+        "scenario_id": "recon-tcp-probe",
+        "n_trials": 30,
+        "n_executed": 30,
+        "n_effect": 21,
+        "run_ids": [
+          367,
+          368,
+          369,
+          370,
+          371,
+          372,
+          373,
+          374,
+          375,
+          376,
+          377,
+          378,
+          379,
+          380,
+          381,
+          382,
+          383,
+          384,
+          385,
+          386,
+          387,
+          388,
+          389,
+          390,
+          391,
+          392,
+          393,
+          394,
+          395,
+          396
+        ],
+        "detected": {
+          "5": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "latency_s": {
+          "5": [
+            2.283684253692627,
+            0.6345903873443604,
+            4.131463050842285,
+            2.5943119525909424,
+            1.097257137298584,
+            3.0817205905914307,
+            1.6533045768737793,
+            4.9648683071136475,
+            2.898287057876587,
+            2.317044973373413,
+            1.2393689155578613,
+            1.5777208805084229,
+            2.7986581325531006,
+            1.114377737045288,
+            3.093024969100952,
+            1.9903688430786133,
+            4.429669141769409,
+            3.73254132270813,
+            2.6189205646514893,
+            1.7397150993347168,
+            0.18454337120056152,
+            1.2959520816802979,
+            1.3799474239349365,
+            1.293088674545288,
+            2.257007122039795,
+            2.5311641693115234,
+            0.5352201461791992,
+            2.386035442352295,
+            6.767300605773926,
+            3.9724864959716797
+          ]
+        }
+      },
+      "regression": {
+        "auth-password-guessing": {
+          "n_executed": 15,
+          "run_ids": [
+            397,
+            398,
+            399,
+            400,
+            401,
+            402,
+            403,
+            404,
+            405,
+            406,
+            407,
+            408,
+            409,
+            410,
+            411
+          ],
+          "detected": {
+            "5": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              false,
+              true,
+              true,
+              false,
+              true
+            ]
+          }
+        },
+        "app-request-flood": {
+          "n_executed": 15,
+          "run_ids": [
+            412,
+            413,
+            414,
+            415,
+            416,
+            417,
+            418,
+            419,
+            420,
+            421,
+            422,
+            423,
+            424,
+            425,
+            426
+          ],
+          "detected": {
+            "5": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ]
+          }
+        }
+      },
+      "benign": {
+        "n_windows": 53,
+        "alert_windows": {
+          "5": 0
+        },
+        "requests": 474,
+        "denied": 0,
+        "run_ids": [
+          427,
+          428,
+          429,
+          430,
+          431,
+          432
+        ]
+      },
+      "health": {
+        "login": true,
+        "test_app": true
+      },
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "n_events": 3747,
+      "n_windows": 121,
+      "regression_set": [
+        "auth-password-guessing",
+        "app-request-flood"
+      ]
+    }
+  },
+  "versions": [
+    {
+      "id": 1,
+      "name": "v1-baseline",
+      "status": "accepted",
+      "active": false,
+      "parent": null,
+      "bundle_hash": "3ef581b32c5243d9cfbb17d6efeffa2baab458f8ff4c8321f4283e7b563dbdc7",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "recon": 22
+      }
+    },
+    {
+      "id": 2,
+      "name": "candidate-p2",
+      "status": "rejected",
+      "active": false,
+      "parent": 1,
+      "bundle_hash": "d48896a32b6dee13a9e6b840cdcd2bbadeb3784f6b59182ce8de2b21e8a25d2a",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5",
+        "SAGE-BRUTEFORCE-1-S n_auth_fail>=1.0"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "recon": 22
+      }
+    },
+    {
+      "id": 3,
+      "name": "candidate-p3",
+      "status": "rejected",
+      "active": false,
+      "parent": 1,
+      "bundle_hash": "9d3cf030b035bb07888d51f3190f533c62a37c933bd826d03962e2c23b7c6794",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5",
+        "SAGE-BRUTEFORCE-1 n_auth_fail>=3.0"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": 5,
+        "login_lockout_seconds": 300,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "recon": 22
+      }
+    },
+    {
+      "id": 4,
+      "name": "candidate-p1",
+      "status": "retired",
+      "active": false,
+      "parent": 1,
+      "bundle_hash": "94f0d40dda7a11bd4ef25ead2568a5170619f01bd6be70c59f98873e68873b13",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5",
+        "SAGE-BRUTEFORCE-1 n_auth_fail>=3.0"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "recon": 22
+      }
+    },
+    {
+      "id": 5,
+      "name": "candidate-p8",
+      "status": "accepted",
+      "active": true,
+      "parent": 4,
+      "bundle_hash": "1052046e993d34ff12f8539483082fa10de5adab58028d610ba771c7cfd5574f",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5",
+        "SAGE-BRUTEFORCE-1 n_auth_fail>=3.0"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "flood": 31,
+        "recon": 22
+      }
+    },
+    {
+      "id": 6,
+      "name": "candidate-p9",
+      "status": "rejected",
+      "active": false,
+      "parent": 5,
+      "bundle_hash": "051ec156d1d9dba0e0bcadaba0ac7a3c54bc2cc99542903daff09468b2e43cb8",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5",
+        "SAGE-BRUTEFORCE-1 n_auth_fail>=3.0",
+        "SAGE-RECON-6 n_distinct_dst_ports>=3.0"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "flood": 31,
+        "recon": 22
+      }
+    },
+    {
+      "id": 7,
+      "name": "candidate-p11",
+      "status": "rejected",
+      "active": false,
+      "parent": 5,
+      "bundle_hash": "f912c5ddc5839a8734931843ebbfa3ce10f86cdd1161e5f368dd6b3eea444a4f",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5",
+        "SAGE-BRUTEFORCE-1 n_auth_fail>=3.0"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "recon": 58,
+        "flood": 31
+      }
+    },
+    {
+      "id": 8,
+      "name": "ABL-iforest-alerting",
+      "status": "ablation",
+      "active": false,
+      "parent": 1,
+      "bundle_hash": "268ef86ee41c3e81002b37a2b2b5ee54e3100cc1ef760b6e50dc05d5f81a790a",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": true
+      },
+      "label_counts": {
+        "benign": 105,
+        "recon": 22
+      }
+    },
+    {
+      "id": 9,
+      "name": "ABL-self-training",
+      "status": "ablation",
+      "active": false,
+      "parent": 1,
+      "bundle_hash": "2da2507525c73aa8baf0cdd14a1744526b731fa11d56889692f1594799e024aa",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 168,
+        "recon": 22
+      }
+    },
+    {
+      "id": 10,
+      "name": "ABL-verified-retrain-all",
+      "status": "ablation",
+      "active": false,
+      "parent": 1,
+      "bundle_hash": "29fc820f1951f15142d4306daac57407c1f4dcf7f31749ffcf75b734359e529f",
+      "rules": [
+        "RECON-PORTSCAN n_distinct_dst_ports>=5"
+      ],
+      "lab_config": {
+        "login_lockout_threshold": null,
+        "login_lockout_seconds": 60,
+        "app_rate_limit_rps": null
+      },
+      "policy": {
+        "rf": true,
+        "iforest": false
+      },
+      "label_counts": {
+        "benign": 105,
+        "bruteforce": 32,
+        "flood": 31,
+        "recon": 22
+      }
+    }
+  ],
+  "rollback": {
+    "from": 5,
+    "to": 4,
+    "restored_to": 5
+  },
+  "ablation_version_ids": [
+    8,
+    9,
+    10
+  ],
+  "final_test": {
+    "n_events": 8169,
+    "n_windows_labelled": 197,
+    "label_counts": {
+      "benign": 97,
+      "recon": 38,
+      "bruteforce": 32,
+      "flood": 30
+    },
+    "versions": {
+      "1": {
+        "name": "v1-baseline",
+        "status": "accepted",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.38,
+          "f1": 0.5507246376811594,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            38,
+            0,
+            97,
+            62
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.610062893081761,
+            "recall": 1.0,
+            "f1": 0.7578125,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 32
+          },
+          "flood": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              32,
+              0,
+              0,
+              0
+            ],
+            [
+              30,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "auth-password-guessing": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.1435513999313116,
+          "ms_per_window": 0.728687309295998
+        }
+      },
+      "2": {
+        "name": "candidate-p2",
+        "status": "rejected",
+        "window_binary": {
+          "precision": 0.7526881720430108,
+          "recall": 0.7,
+          "f1": 0.7253886010362695,
+          "fpr": 0.23711340206185566,
+          "fpr_ci95": [
+            0.16351475317242736,
+            0.33074087773793176
+          ],
+          "tp_fp_tn_fn": [
+            70,
+            23,
+            74,
+            30
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.7115384615384616,
+            "recall": 0.7628865979381443,
+            "f1": 0.736318407960199,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 0.5818181818181818,
+            "recall": 1.0,
+            "f1": 0.735632183908046,
+            "support": 32
+          },
+          "flood": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              74,
+              23,
+              0,
+              0
+            ],
+            [
+              0,
+              32,
+              0,
+              0
+            ],
+            [
+              30,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "auth-password-guessing": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 0.001007080078125,
+            "latency_p95_s": 0.01907587051391598
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.2561805001460016,
+          "ms_per_window": 1.300408630182749
+        }
+      },
+      "3": {
+        "name": "candidate-p3",
+        "status": "rejected",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.67,
+          "f1": 0.8023952095808383,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            67,
+            0,
+            97,
+            33
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.7461538461538462,
+            "recall": 1.0,
+            "f1": 0.8546255506607929,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 1.0,
+            "recall": 0.90625,
+            "f1": 0.9508196721311475,
+            "support": 32
+          },
+          "flood": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              29,
+              0,
+              0
+            ],
+            [
+              30,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "auth-password-guessing": {
+            "detected": 27,
+            "n": 30,
+            "rate": 0.9,
+            "ci95": [
+              0.7437891726682571,
+              0.9654001115225814
+            ],
+            "latency_median_s": 0.05690479278564453,
+            "latency_p95_s": 0.1200244903564453
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.24568659998476505,
+          "ms_per_window": 1.247140101445508
+        }
+      },
+      "4": {
+        "name": "candidate-p1",
+        "status": "retired",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.67,
+          "f1": 0.8023952095808383,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            67,
+            0,
+            97,
+            33
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.7461538461538462,
+            "recall": 1.0,
+            "f1": 0.8546255506607929,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 1.0,
+            "recall": 0.90625,
+            "f1": 0.9508196721311475,
+            "support": 32
+          },
+          "flood": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              29,
+              0,
+              0
+            ],
+            [
+              30,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "auth-password-guessing": {
+            "detected": 27,
+            "n": 30,
+            "rate": 0.9,
+            "ci95": [
+              0.7437891726682571,
+              0.9654001115225814
+            ],
+            "latency_median_s": 0.05690479278564453,
+            "latency_p95_s": 0.1200244903564453
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.24523269990459085,
+          "ms_per_window": 1.2448360401248266
+        }
+      },
+      "5": {
+        "name": "candidate-p8",
+        "status": "accepted",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.97,
+          "f1": 0.9847715736040609,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            97,
+            0,
+            97,
+            3
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.97,
+            "recall": 1.0,
+            "f1": 0.9847715736040609,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 1.0,
+            "recall": 0.90625,
+            "f1": 0.9508196721311475,
+            "support": 32
+          },
+          "flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              29,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              30,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 2.547168016433716,
+            "latency_p95_s": 4.702821230888366
+          },
+          "auth-password-guessing": {
+            "detected": 27,
+            "n": 30,
+            "rate": 0.9,
+            "ci95": [
+              0.7437891726682571,
+              0.9654001115225814
+            ],
+            "latency_median_s": 0.05690479278564453,
+            "latency_p95_s": 0.1200244903564453
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.2489950000308454,
+          "ms_per_window": 1.2639340103088599
+        }
+      },
+      "6": {
+        "name": "candidate-p9",
+        "status": "rejected",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.97,
+          "f1": 0.9847715736040609,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            97,
+            0,
+            97,
+            3
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.97,
+            "recall": 1.0,
+            "f1": 0.9847715736040609,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 1.0,
+            "recall": 0.90625,
+            "f1": 0.9508196721311475,
+            "support": 32
+          },
+          "flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              29,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              30,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 2.547168016433716,
+            "latency_p95_s": 4.702821230888366
+          },
+          "auth-password-guessing": {
+            "detected": 27,
+            "n": 30,
+            "rate": 0.9,
+            "ci95": [
+              0.7437891726682571,
+              0.9654001115225814
+            ],
+            "latency_median_s": 0.05690479278564453,
+            "latency_p95_s": 0.1200244903564453
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.1150727272033691,
+            "latency_p95_s": 2.1441099166870115
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.3518794998526573,
+          "ms_per_window": 1.7861903545820168
+        }
+      },
+      "7": {
+        "name": "candidate-p11",
+        "status": "rejected",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.97,
+          "f1": 0.9847715736040609,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            97,
+            0,
+            97,
+            3
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.97,
+            "recall": 1.0,
+            "f1": 0.9847715736040609,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 1.0,
+            "recall": 0.90625,
+            "f1": 0.9508196721311475,
+            "support": 32
+          },
+          "flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              29,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              30,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 2.547168016433716,
+            "latency_p95_s": 4.702821230888366
+          },
+          "auth-password-guessing": {
+            "detected": 27,
+            "n": 30,
+            "rate": 0.9,
+            "ci95": [
+              0.7437891726682571,
+              0.9654001115225814
+            ],
+            "latency_median_s": 0.05690479278564453,
+            "latency_p95_s": 0.1200244903564453
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.2504328000359237,
+          "ms_per_window": 1.2712324874919987
+        }
+      },
+      "8": {
+        "name": "ABL-iforest-alerting",
+        "status": "ablation",
+        "window_binary": {
+          "precision": 0.98989898989899,
+          "recall": 0.98,
+          "f1": 0.9849246231155779,
+          "fpr": 0.010309278350515464,
+          "fpr_ci95": [
+            0.0018221647881505286,
+            0.05610499082918524
+          ],
+          "tp_fp_tn_fn": [
+            98,
+            1,
+            96,
+            2
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.610062893081761,
+            "recall": 1.0,
+            "f1": 0.7578125,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 32
+          },
+          "flood": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              32,
+              0,
+              0,
+              0
+            ],
+            [
+              30,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 2.547168016433716,
+            "latency_p95_s": 4.702821230888366
+          },
+          "auth-password-guessing": {
+            "detected": 28,
+            "n": 30,
+            "rate": 0.9333333333333333,
+            "ci95": [
+              0.7867654148312584,
+              0.9815229763754831
+            ],
+            "latency_median_s": 3.0538958311080933,
+            "latency_p95_s": 4.807026433944702
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.14444479998201132,
+          "ms_per_window": 0.7332223349340676
+        }
+      },
+      "9": {
+        "name": "ABL-self-training",
+        "status": "ablation",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 0.38,
+          "f1": 0.5507246376811594,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            38,
+            0,
+            97,
+            62
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 0.610062893081761,
+            "recall": 1.0,
+            "f1": 0.7578125,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 32
+          },
+          "flood": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              32,
+              0,
+              0,
+              0
+            ],
+            [
+              30,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "auth-password-guessing": {
+            "detected": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.11351339476145204
+            ],
+            "latency_median_s": null,
+            "latency_p95_s": null
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.2077950001694262,
+          "ms_per_window": 1.0547969551747522
+        }
+      },
+      "10": {
+        "name": "ABL-verified-retrain-all",
+        "status": "ablation",
+        "window_binary": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "fpr": 0.0,
+          "fpr_ci95": [
+            0.0,
+            0.038094043104016526
+          ],
+          "tp_fp_tn_fn": [
+            100,
+            0,
+            97,
+            0
+          ]
+        },
+        "per_class": {
+          "benign": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 97
+          },
+          "bruteforce": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 32
+          },
+          "flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 30
+          },
+          "recon": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 38
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "benign",
+            "bruteforce",
+            "flood",
+            "recon"
+          ],
+          "matrix": [
+            [
+              97,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              32,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              30,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              38
+            ]
+          ]
+        },
+        "per_scenario": {
+          "app-request-flood": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 2.547168016433716,
+            "latency_p95_s": 4.702821230888366
+          },
+          "auth-password-guessing": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 3.081215500831604,
+            "latency_p95_s": 4.793944692611694
+          },
+          "recon-tcp-probe": {
+            "detected": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886486605238548,
+              1.0
+            ],
+            "latency_median_s": 1.9766572713851929,
+            "latency_p95_s": 4.558697116374969
+          }
+        },
+        "cost": {
+          "eval_seconds_total": 0.20561020029708743,
+          "ms_per_window": 1.0437066004928297
+        }
+      }
+    },
+    "rss_mb": 249.9375,
+    "mcnemar_vs_v1": {
+      "app-request-flood": {
+        "2": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "3": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "4": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "5": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        },
+        "6": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        },
+        "7": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        },
+        "8": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        },
+        "9": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "10": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        }
+      },
+      "auth-password-guessing": {
+        "2": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        },
+        "3": {
+          "b_candidate_only": 27,
+          "c_baseline_only": 0,
+          "discordant": 27,
+          "p_value": 1.4901161193847656e-08,
+          "alternative": "two-sided"
+        },
+        "4": {
+          "b_candidate_only": 27,
+          "c_baseline_only": 0,
+          "discordant": 27,
+          "p_value": 1.4901161193847656e-08,
+          "alternative": "two-sided"
+        },
+        "5": {
+          "b_candidate_only": 27,
+          "c_baseline_only": 0,
+          "discordant": 27,
+          "p_value": 1.4901161193847656e-08,
+          "alternative": "two-sided"
+        },
+        "6": {
+          "b_candidate_only": 27,
+          "c_baseline_only": 0,
+          "discordant": 27,
+          "p_value": 1.4901161193847656e-08,
+          "alternative": "two-sided"
+        },
+        "7": {
+          "b_candidate_only": 27,
+          "c_baseline_only": 0,
+          "discordant": 27,
+          "p_value": 1.4901161193847656e-08,
+          "alternative": "two-sided"
+        },
+        "8": {
+          "b_candidate_only": 28,
+          "c_baseline_only": 0,
+          "discordant": 28,
+          "p_value": 7.450580596923828e-09,
+          "alternative": "two-sided"
+        },
+        "9": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "10": {
+          "b_candidate_only": 30,
+          "c_baseline_only": 0,
+          "discordant": 30,
+          "p_value": 1.862645149230957e-09,
+          "alternative": "two-sided"
+        }
+      },
+      "recon-tcp-probe": {
+        "2": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "3": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "4": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "5": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "6": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "7": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "8": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "9": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        },
+        "10": {
+          "b_candidate_only": 0,
+          "c_baseline_only": 0,
+          "discordant": 0,
+          "p_value": 1.0,
+          "alternative": "two-sided"
+        }
+      }
+    },
+    "v1_id": "1"
+  },
+  "safety_checks": [
+    {
+      "target": "8.8.8.8:18081",
+      "decision": "DENIED",
+      "detail": "target '8.8.8.8' resolves to non-allowlisted address(es) ['8.8.8.8']"
+    },
+    {
+      "target": "10.0.0.5:18081",
+      "decision": "DENIED",
+      "detail": "target '10.0.0.5' resolves to non-allowlisted address(es) ['10.0.0.5']"
+    },
+    {
+      "target": "192.168.1.1:18082",
+      "decision": "DENIED",
+      "detail": "target '192.168.1.1' resolves to non-allowlisted address(es) ['192.168.1.1']"
+    },
+    {
+      "target": "127.0.0.2:18081",
+      "decision": "DENIED",
+      "detail": "target '127.0.0.2' resolves to non-allowlisted address(es) ['127.0.0.2']"
+    },
+    {
+      "target": "example.com:18082",
+      "decision": "DENIED",
+      "detail": "target 'example.com' resolves to non-allowlisted address(es) ['104.20.23.154', '172.66.147.243', '2606:4700:90c5:72db:f264:26:ef6b:ff98']"
+    },
+    {
+      "target": "localhost:18081",
+      "decision": "DENIED",
+      "detail": "target 'localhost' resolves to non-allowlisted address(es) ['::1']"
+    },
+    {
+      "target": "127.0.0.1:22",
+      "decision": "DENIED",
+      "detail": "port 22 not in laboratory port allowlist"
+    },
+    {
+      "target": "127.0.0.1;rm -rf /:18081",
+      "decision": "DENIED",
+      "detail": "malformed target '127.0.0.1;rm -rf /'"
+    },
+    {
+      "target": "127.0.0.1:18081",
+      "decision": "ALLOWED",
+      "detail": "127.0.0.1"
+    },
+    {
+      "target": "scenario->8.8.8.8 (active=True)",
+      "decision": "DENIED before any connection",
+      "detail": "TargetNotAllowed: target '8.8.8.8' resolves to non-allowlisted address(es) ['8.8.8.8']"
+    },
+    {
+      "target": "scenario->127.0.0.1 (active=False)",
+      "decision": "DENIED before any connection",
+      "detail": "ActiveLabDisabled: active laboratory scenarios are disabled (opt-in: SAGE_ENABLE_ACTIVE_LAB=1)"
+    }
+  ],
+  "audit_chain": {
+    "valid": true,
+    "entries_checked": 116,
+    "head": "ccdf18106255e974c6ee37a6d82b0becd249179262dac8dbed0826494d293bd9"
+  },
+  "audit_tamper_test": {
+    "modified_entry": 58,
+    "valid": false,
+    "entries_checked": 57,
+    "broken_at_id": 58
+  },
+  "resources": {
+    "wall_s": 1158.6,
+    "cpu_user_s": 47.609375,
+    "cpu_system_s": 35.078125,
+    "rss_mb": 254.24609375
+  }
+}

@@ -1,0 +1,9 @@
+# Initial (v1) detection ruleset, instantiated from the approved `threshold` template.
+- id: RECON-PORTSCAN
+  template: threshold
+  feature: n_distinct_dst_ports
+  op: ">="
+  threshold: 5
+  severity: medium
+  label: recon
+  description: "one source touched >= 5 distinct destination ports within a window"

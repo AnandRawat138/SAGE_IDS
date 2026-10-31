@@ -1,0 +1,26 @@
+# Deterministic, reviewable knowledge used by the Threat Research Agent.
+# CWE weakness class -> ATT&CK technique(s) whose behaviour exploits it (curated, conservative).
+cwe_to_techniques:
+  CWE-307: ["T1110", "T1110.001"]     # Improper Restriction of Excessive Authentication Attempts
+  CWE-521: ["T1110", "T1110.001"]     # Weak Password Requirements
+  CWE-1391: ["T1110", "T1110.001"]    # Use of Weak Credentials
+  CWE-770: ["T1499", "T1499.002"]     # Allocation of Resources Without Limits or Throttling
+  CWE-400: ["T1499", "T1499.002"]     # Uncontrolled Resource Consumption
+  CWE-799: ["T1499.002", "T1110"]     # Improper Control of Interaction Frequency
+# ATT&CK technique -> approved catalogue scenario
+technique_to_scenarios:
+  T1046: ["recon-tcp-probe"]
+  T1110: ["auth-password-guessing"]
+  T1110.001: ["auth-password-guessing"]
+  T1110.003: ["auth-password-guessing"]
+  T1499: ["app-request-flood"]
+  T1499.002: ["app-request-flood"]
+# ATT&CK techniques the research agent tracks from the STIX bundle
+tracked_techniques: ["T1046", "T1110", "T1110.001", "T1110.003", "T1499", "T1499.002"]
+# NVD queries (by weakness class) issued in live mode
+nvd_cwe_queries: ["CWE-307", "CWE-770"]
+# Scenario label used for verified ground-truth windows
+scenario_labels:
+  recon-tcp-probe: recon
+  auth-password-guessing: bruteforce
+  app-request-flood: flood

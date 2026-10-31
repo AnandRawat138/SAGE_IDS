@@ -1,0 +1,55 @@
+{
+  "_fixture_note": "SYNTHETIC DEMO FIXTURE - a minimal STIX 2.1 bundle in the shape of MITRE ATT&CK enterprise-attack.json. Descriptions are short paraphrases written for this project, not ATT&CK text. Use `--mode live` to retrieve the real ATT&CK bundle.",
+  "type": "bundle",
+  "id": "bundle--sage-fixture",
+  "objects": [
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--fixture-t1046",
+      "created": "2020-01-01T00:00:00.000Z",
+      "modified": "2020-01-01T00:00:00.000Z",
+      "name": "Network Service Discovery",
+      "description": "Adversaries enumerate services listening on remote hosts, for example with sequential connection attempts across ports.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1046",
+          "url": "https://attack.mitre.org/techniques/T1046/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--fixture-t1110-001",
+      "created": "2020-01-01T00:00:00.000Z",
+      "modified": "2020-01-01T00:00:00.000Z",
+      "name": "Brute Force: Password Guessing",
+      "description": "Adversaries repeatedly try candidate passwords against an account to gain access when credentials are unknown.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1110.001",
+          "url": "https://attack.mitre.org/techniques/T1110/001/"
+        }
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--fixture-t1499-002",
+      "created": "2020-01-01T00:00:00.000Z",
+      "modified": "2020-01-01T00:00:00.000Z",
+      "name": "Endpoint Denial of Service: Service Exhaustion Flood",
+      "description": "Adversaries send high volumes of requests to a service to exhaust its resources and degrade availability.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1499.002",
+          "url": "https://attack.mitre.org/techniques/T1499/002/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+# SAGE-IDS Docker Compose — application services + isolated packet-capture laboratory.
+#
+# STATUS: template. Docker was not available in the environment where this prototype was built and
+# measured, so this file has NOT been executed there. The measured results in reports/ come from the
+# loopback laboratory (sage-ids experiment). See docs/SETUP.md section "Docker laboratory".
+#
+# Isolation design
+#   * `labnet` is an internal bridge network (internal: true): containers on it have NO route to the
+#     host's upstream networks or the internet.
+#   * Published ports bind to 127.0.0.1 only.
+#   * Zeek and Suricata sniff the lab bridge (br-sagelab) passively and write logs to ./data/lab_logs,
+#     which `sage-ids replay` ingests read-only.
+#   * The `attacker` service is only started explicitly (profile "active") and its allowlist is the
+#     lab subnet; it runs approved catalogue scenarios only.
+name: sage-ids
+
+networks:
+  mgmt: {}
+  labnet:
+    internal: true
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-sagelab
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
+x-app: &app
+  build: { context: .., dockerfile: docker/Dockerfile }
+  env_file: ../.env
+  volumes:
+    - ../data:/app/data
+    - ../artifacts:/app/artifacts
+    - ../reports:/app/reports
+
+services:
+  api:
+    <<: *app
+    networks: [mgmt]
+    ports: ["127.0.0.1:8000:8000"]
+    command: ["uvicorn", "sage_ids.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+  dashboard:
+    <<: *app
+    networks: [mgmt]
+    ports: ["127.0.0.1:8501:8501"]
+    environment: { SAGE_API_URL: "http://api:8000" }
+    command: ["streamlit", "run", "sage_ids/dashboard/app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+    depends_on: [api]
+
+  lab-targets:
+    <<: *app
+    networks: { labnet: { ipv4_address: 172.30.0.10 } }
+    environment: { SAGE_LAB_BIND: "0.0.0.0" }
+    command: ["python", "-m", "sage_ids.lab.serve"]
+
+  attacker:
+    <<: *app
+    profiles: ["active"]
+    networks: { labnet: { ipv4_address: 172.30.0.66 } }
+    environment:
+      SAGE_ENABLE_ACTIVE_LAB: "1"
+      SAGE_CONFIG: /app/configs/sage.docker.yaml
+    command: ["sleep", "infinity"]   # run: docker compose exec attacker sage-ids ...
+
+  zeek:
+    image: zeek/zeek:6.0.4
+    network_mode: host
+    cap_add: [NET_ADMIN, NET_RAW]
+    volumes: ["../data/lab_logs/zeek:/logs"]
+    working_dir: /logs
+    command: ["zeek", "-C", "-i", "br-sagelab", "LogAscii::use_json=F"]
+    depends_on: [lab-targets]
+
+  suricata:
+    image: jasonish/suricata:7.0.5
+    network_mode: host
+    cap_add: [NET_ADMIN, NET_RAW, SYS_NICE]
+    volumes:
+      - "../data/lab_logs/suricata:/var/log/suricata"
+      - "./suricata/sage-lab.rules:/var/lib/suricata/rules/sage-lab.rules:ro"
+    command: ["-i", "br-sagelab", "-S", "/var/lib/suricata/rules/sage-lab.rules"]
+    depends_on: [lab-targets]
