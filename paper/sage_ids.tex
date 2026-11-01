@@ -28,9 +28,17 @@ Closed-Loop Multi-Agent Adversarial Validation}
 
 \author{Anand~Rawat,
         Anandi~Singh,
-        and~Ananya~Agarwal%
-\thanks{The authors are with the Department of Computer Science and Engineering.
-Project mentor: Mr.~Ashutosh Pandey. Correspondence: anandrawat138a@gmail.com.}%
+        Ananya~Agarwal,
+        Brijesh~Kumar~Chaurasia,
+        and~Ashutosh~Pandey%
+\thanks{A. Rawat, A. Singh, and A. Agarwal are with the Department of Computer Science and
+Engineering, Pranveer Singh Institute of Technology (PSIT), India
+(e-mail: anandrawat138a@gmail.com).}%
+\thanks{B. K. Chaurasia is with the Department of Mathematical Sciences and Computer Applications,
+Bundelkhand University, Jhansi, Uttar Pradesh, India, and also with Pranveer Singh Institute of
+Technology (PSIT), India (ORCID: 0000-0003-3708-7819).}%
+\thanks{A. Pandey is with Pranveer Singh Institute of Technology (PSIT), India.}%
+\thanks{Corresponding author: A. Rawat.}%
 \thanks{Code, data manifests, and the full audit ledger are available at
 \url{https://github.com/AnandRawat138/SAGE_IDS} (see Data Availability).}}
 
@@ -185,9 +193,65 @@ Eval frameworks~\cite{pendlebury2019tesseract}             & -- & -- & yes (offl
 \section{System Design}
 \label{sec:design}
 
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[>=Latex, font=\footnotesize, node distance=6mm and 10mm,
+  agent/.style={draw, rounded corners, align=center, minimum width=21mm, minimum height=9mm,
+    fill=blue!7, inner sep=2pt},
+  core/.style={draw, very thick, rounded corners, align=center, minimum width=34mm,
+    minimum height=16mm, fill=gray!12},
+  store/.style={draw, align=center, minimum width=24mm, minimum height=8mm, fill=green!8,
+    inner sep=2pt},
+  lab/.style={draw, align=center, minimum width=26mm, minimum height=9mm, fill=orange!10,
+    inner sep=2pt},
+  ext/.style={draw, align=center, minimum width=20mm, minimum height=8mm, fill=black!5,
+    inner sep=2pt},
+  op/.style={draw, align=center, minimum width=22mm, minimum height=8mm, fill=red!6, inner sep=2pt},
+  dat/.style={->, thick}, ctl/.style={->, thick, dashed}]
+% centre: coordinator
+\node[core] (co) {\textbf{Coordinator}\\persistent bounded\\state machine};
+% operator above
+\node[op, above=8mm of co] (op) {Operator\\(dashboard / API)};
+% left: threat intelligence
+\node[ext, left=16mm of co, yshift=7mm] (nvd) {NVD / MITRE\\ATT\&CK (HTTPS)};
+\node[agent, below=5mm of nvd] (tr) {Threat Research\\(untrusted data)};
+% right: lab + its two agents
+\node[lab, right=16mm of co, yshift=8mm] (lab) {Laboratory\\login $\cdot$ web app $\cdot$ decoys\\(allowlist-guarded)};
+\node[agent, below=4mm of lab, xshift=-9mm] (adv) {Adversarial\\Validation};
+\node[agent, below=4mm of lab, xshift=14mm] (mon) {Monitoring\\(dual sensors)};
+% below coordinator: remediation + explanation
+\node[agent, below=9mm of co, xshift=-20mm] (rem) {Remediation};
+\node[agent, below=9mm of co, xshift=20mm] (exp) {Explanation};
+% bottom stores
+\node[store, below=6mm of rem] (reg) {Versioned detector\\registry (+ rollback)};
+\node[store, below=6mm of exp] (led) {Hash-chained\\audit ledger};
+% edges: data plane (solid), control/approval (dashed)
+\draw[dat] (nvd) -- (tr);
+\draw[dat] (tr.east) -- node[above, font=\scriptsize]{finding} (co.west);
+\draw[ctl] (op) -- node[right, font=\scriptsize]{approve / accept} (co);
+\draw[dat] (co.east) -- node[above, font=\scriptsize]{scenario} (adv.north west);
+\draw[dat] (adv) -- (lab);
+\draw[dat] (lab) -- (mon);
+\draw[dat] (mon.south) to[out=-90,in=0] node[below, font=\scriptsize, pos=0.3]{telemetry} (co.east);
+\draw[dat] (co.south) -- (rem.north);
+\draw[dat] (co.south) -- (exp.north);
+\draw[dat] (rem) -- node[left, font=\scriptsize]{candidate} (reg);
+\draw[dat] (reg.north) to[out=90,in=-90] (co.south);
+\draw[dat] (exp) -- (led);
+\draw[dat] (co.south east) to[out=-90,in=90] (led.north);
+\end{tikzpicture}
+\caption{\sage{} architecture. Solid arrows are the data plane; dashed arrows are the
+operator control plane. Retrieved intelligence is untrusted and never executed; the Adversarial
+Validation agent reaches the laboratory only through an in-code target allowlist; every coordinator
+transition and detector-version change is written to the hash-chained audit ledger. A candidate
+version activates only via the operator after passing the frozen acceptance criteria.}
+\label{fig:arch}
+\end{figure*}
+
 \subsection{Agents and coordinator}
 \sage{} comprises five agents coordinated by a persistent, bounded state machine
-(Fig.~\ref{fig:fsm}). The \emph{Monitoring} agent ingests telemetry, builds per-source feature
+(Fig.~\ref{fig:fsm}; the overall architecture is shown in Fig.~\ref{fig:arch}). The \emph{Monitoring}
+agent ingests telemetry, builds per-source feature
 windows, attaches ground-truth labels, and runs the active detector. The \emph{Threat Research} agent
 retrieves vulnerability and technique intelligence (Sec.~\ref{sec:intel}). The \emph{Adversarial
 Validation} agent executes reviewed scenarios against allowlisted laboratory targets. The
@@ -538,8 +602,8 @@ own evadability. The contribution is the validation discipline and an honest, re
 of what such a loop does and does not achieve.
 
 \section*{Acknowledgment}
-The authors thank their project mentor for guidance. This work used only locally hosted models and
-public threat-intelligence feeds.
+This work used only locally hosted models and public threat-intelligence feeds. The authors thank
+their institutions for infrastructure support.
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
