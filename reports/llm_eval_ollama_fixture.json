@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-11-01T05:28:40.788717+00:00",
+  "provider": "ollama",
+  "model": "llama3",
+  "mode": "fixture",
+  "n_findings_evaluated": 7,
+  "llm_available": true,
+  "valid_structured_output": 6,
+  "valid_rate": 0.8571428571428571,
+  "selected_reference_scenario": 6,
+  "agreement_rate": 0.8571428571428571,
+  "mean_latency_s": 2.48,
+  "never_exceeded_closed_set": true,
+  "rows": [
+    {
+      "finding": "SYNTH-2026-0001",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.39,
+      "data_origin": "synthetic_fixture"
+    },
+    {
+      "finding": "SYNTH-2026-0002",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.01,
+      "data_origin": "synthetic_fixture"
+    },
+    {
+      "finding": "SYNTH-2025-0107",
+      "cwe": [
+        "CWE-1391"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 1.65,
+      "data_origin": "synthetic_fixture"
+    },
+    {
+      "finding": "SYNTH-2026-0004",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": null,
+      "valid_json": false,
+      "within_closed_set": false,
+      "selected_reference_scenario": false,
+      "latency_s": 1.55,
+      "data_origin": "synthetic_fixture"
+    },
+    {
+      "finding": "T1046",
+      "cwe": [],
+      "techniques": [
+        "T1046"
+      ],
+      "allowed": [
+        "recon-tcp-probe"
+      ],
+      "deterministic": [
+        "recon-tcp-probe"
+      ],
+      "llm": [
+        "recon-tcp-probe"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.12,
+      "data_origin": "synthetic_fixture"
+    },
+    {
+      "finding": "T1110.001",
+      "cwe": [],
+      "techniques": [
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.1,
+      "data_origin": "synthetic_fixture"
+    },
+    {
+      "finding": "T1499.002",
+      "cwe": [],
+      "techniques": [
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.54,
+      "data_origin": "synthetic_fixture"
+    }
+  ]
+}

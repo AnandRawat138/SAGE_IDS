@@ -76,6 +76,10 @@ def main(argv: list[str] | None = None) -> int:
     er = sub.add_parser("experiment-report", help="re-generate the experiment report from an experiment database")
     er.add_argument("--experiment-db", required=True)
     er.add_argument("--out", default="reports")
+    le = sub.add_parser("llm-eval", help="measure the configured LLM against the deterministic scenario mapper")
+    le.add_argument("--mode", choices=["fixture", "live"], default="fixture")
+    le.add_argument("--out", default="reports")
+    le.add_argument("--max-findings", type=int, default=40)
     bm = sub.add_parser("benchmark", help="CICIDS2017 / UNSW-NB15 benchmark (separate model and schema)")
     bm.add_argument("--dataset", choices=["cicids2017", "unsw-nb15"], default="cicids2017")
     bm.add_argument("--data-dir", required=True)
@@ -111,6 +115,15 @@ def main(argv: list[str] | None = None) -> int:
         extra.setdefault("log", []).append("report regenerated from the database by `sage-ids experiment-report`")
         res = collect_results(s, Database(s.database_url), path, s.path(args.out), extra)
         print(f"wrote {s.path(args.out) / 'experiment_report.md'} (audit valid: {res['audit_chain']['valid']})")
+        return 0
+    if args.cmd == "llm-eval":
+        from .evaluation.llm_eval import run_llm_eval
+        import tempfile, uuid
+        s = load_settings(args.config)
+        s.database_url = f"sqlite:///{Path(tempfile.gettempdir()) / ('sage_llmeval_' + uuid.uuid4().hex + '.db')}".replace("\\", "/")
+        res = run_llm_eval(s, s.path(args.out), args.mode, args.max_findings)
+        print(json.dumps({k: res[k] for k in ("provider", "model", "n_findings_evaluated", "valid_rate",
+                                              "agreement_rate", "mean_latency_s", "never_exceeded_closed_set")}, indent=2))
         return 0
     if args.cmd == "benchmark":
         from .data.benchmark import run_benchmark

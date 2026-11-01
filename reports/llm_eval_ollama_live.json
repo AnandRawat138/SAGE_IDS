@@ -1,0 +1,746 @@
+{
+  "generated_at": "2026-11-01T05:31:52.247664+00:00",
+  "provider": "ollama",
+  "model": "llama3",
+  "mode": "live",
+  "n_findings_evaluated": 30,
+  "llm_available": true,
+  "valid_structured_output": 30,
+  "valid_rate": 1.0,
+  "selected_reference_scenario": 29,
+  "agreement_rate": 0.9666666666666667,
+  "mean_latency_s": 2.75,
+  "never_exceeded_closed_set": true,
+  "rows": [
+    {
+      "finding": "CVE-2026-8793",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.44,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-48084",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.87,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-66340",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.08,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-73529",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.1,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-49870",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.87,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-69183",
+      "cwe": [
+        "CWE-290",
+        "CWE-307",
+        "CWE-644"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.73,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-21755",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.78,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-62862",
+      "cwe": [
+        "CWE-307",
+        "CWE-330"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.4,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-13348",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.17,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-88770",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.42,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-91973",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.33,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-40538",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.19,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-56592",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.45,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-84461",
+      "cwe": [
+        "CWE-203",
+        "CWE-307",
+        "CWE-799"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood",
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "app-request-flood",
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": false,
+      "latency_s": 3.08,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-102334",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.92,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-105638",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.44,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-105866",
+      "cwe": [
+        "CWE-307",
+        "CWE-645"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.7,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-18318",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.42,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-109949",
+      "cwe": [
+        "CWE-307"
+      ],
+      "techniques": [
+        "T1110",
+        "T1110.001"
+      ],
+      "allowed": [
+        "auth-password-guessing"
+      ],
+      "deterministic": [
+        "auth-password-guessing"
+      ],
+      "llm": [
+        "auth-password-guessing"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.96,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-10573",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.28,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-9140",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.98,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-12707",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 4.52,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-59204",
+      "cwe": [
+        "CWE-770",
+        "CWE-789"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.56,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-23538",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.81,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-21729",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 3.02,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-50273",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.34,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-48504",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.63,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-50271",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.52,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-50272",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.02,
+      "data_origin": "live_internet"
+    },
+    {
+      "finding": "CVE-2026-50274",
+      "cwe": [
+        "CWE-770"
+      ],
+      "techniques": [
+        "T1499",
+        "T1499.002"
+      ],
+      "allowed": [
+        "app-request-flood"
+      ],
+      "deterministic": [
+        "app-request-flood"
+      ],
+      "llm": [
+        "app-request-flood"
+      ],
+      "valid_json": true,
+      "within_closed_set": true,
+      "selected_reference_scenario": true,
+      "latency_s": 2.5,
+      "data_origin": "live_internet"
+    }
+  ]
+}
