@@ -10,3 +10,7 @@ data/lab_logs/
 data/datasets/
 artifacts/
 *.egg-info/
+
+# paper kept local only, not in the repo
+paper/
+sage_ids_latex_source.zip
