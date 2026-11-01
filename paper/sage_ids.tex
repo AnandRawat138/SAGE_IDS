@@ -203,8 +203,7 @@ time out on restart rather than silently resuming.
   every node/.style={font=\scriptsize},
   st/.style={draw, rounded corners, align=center, inner sep=1.6pt, minimum height=4.2mm, fill=gray!8},
   term/.style={st, fill=black!12},
-  op/.style={draw=black, very thick},
-  ->/.style={->}]
+  op/.style={draw=black, very thick}]
 \node[st] (fr) {finding\\received};
 \node[st, below=of fr] (rc) {relevance\\checked};
 \node[st, below=of rc, op] (pr) {scenario\\pending review};
