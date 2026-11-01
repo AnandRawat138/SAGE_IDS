@@ -35,7 +35,7 @@ Both were fixed, and the whole experiment was re-run from scratch.
 
 | # | Observation | Change | Rationale |
 |---|---|---|---|
-| 12 | With 2.4 GB of free RAM, the full dataset could not be held through cleaning and splitting | features loaded as float32, plus a documented uniform subsample of 150,000 rows per CSV (`--max-rows`, recorded in the results) | memory constraint of the build machine; full-size command documented |
+| 12 | With 2.4 GB of free RAM, the full dataset could not be held through cleaning and splitting | features loaded as float32, single-mask cleaning, plus a documented uniform subsample of 150,000 rows per CSV (`--max-rows`, recorded in the results). Once enough memory was free, the **full dataset** was run and is now the primary result; the subsample results are kept in `reports/benchmark_subsample_150k/` | memory constraint of the build machine at the time |
 | 13 | The leakage guard aborted the run: 2 "identical" rows in train and validation | root cause: `DataFrame.round(9)` on float32 columns corrupts large values (32036248 → 32036246), so distinct rows hashed equal. The row hash now uses exact values (float64-widened, -0.0 folded); regression test added | the guard over-reported and never missed a real leak; deduplication itself was correct |
 | 14 | Web-attack labels kept the mis-encoded dash (`ï¿½`) | label normalisation regex fixed; the stratified run was repeated with the same seeds | cosmetic: the labels were consistent across splits, so the metrics are identical |
 

@@ -104,8 +104,8 @@ def clean(df: pd.DataFrame, features: list[str]) -> tuple[pd.DataFrame, dict]:
     """Remove invalid rows, then exact duplicates and label-conflicting feature duplicates.
     Done BEFORE splitting so identical rows cannot appear in both train and test."""
     n0 = len(df)
-    df = df.replace([np.inf, -np.inf], np.nan)
-    df = df.dropna(subset=features)
+    valid = np.isfinite(df[features].to_numpy(dtype="float32")).all(axis=1)   # one mask, no full-table copies
+    df = df[valid]
     n_invalid = n0 - len(df)
     n1 = len(df)
     df = df.drop_duplicates(subset=features + ["Label"])

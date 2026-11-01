@@ -129,23 +129,23 @@ decisions but was invalidated by a host suspend.
 ### CICIDS2017 benchmark (separate model and schema)
 
 From [reports/benchmark_cicids2017_stratified.md](reports/benchmark_cicids2017_stratified.md) and
-[reports/benchmark_cicids2017_day.md](reports/benchmark_cicids2017_day.md). Five seeds, mean [95% bootstrap CI].
-The data is a uniform random subsample of 150,000 rows per CSV (1.2M of about 2.8M rows), chosen because of the
-memory available on the build machine. After deduplication before the split, 1,094,360 rows remain, and every
-seed has zero identical rows across train, validation and test.
+[reports/benchmark_cicids2017_day.md](reports/benchmark_cicids2017_day.md). Five seeds, mean [95% bootstrap CI], on the **full dataset**:
+2,830,743 rows, of which 2,496,544 remain after removing invalid rows, 329,896 exact duplicates and 1,436
+label-conflicting rows *before* splitting. Every seed has zero identical rows across train, validation and test.
 
-| split | RF precision | RF recall | RF F1 | RF FPR | multi-class macro-F1 |
-|---|---|---|---|---|---|
-| random stratified 60/20/20 | 0.9958 | 0.9977 | 0.9967 [0.9965, 0.9969] | 0.0009 | 0.85 |
-| day-held-out (train Mon–Thu, test Fri) | 0.9982 | 0.3741 | 0.5443 [0.5435, 0.5450] | 0.0004 | 0.21 |
+| split | RF precision | RF recall | RF F1 | RF FPR | RF ROC-AUC | multi-class macro-F1 |
+|---|---|---|---|---|---|---|
+| random stratified 60/20/20 | 0.9969 | 0.9986 | 0.9977 [0.9976, 0.9979] | 0.0006 | 0.9999 | 0.86 |
+| day-held-out (train Mon–Thu, test Fri) | 0.9980 | 0.3703 | 0.5401 [0.5388, 0.5414] | 0.0004 | 0.791 | 0.20 |
 
 Friday's attack families (DDoS, PortScan, Bot) are absent from the training days, so the random-split
-score greatly overstates generalisation to unseen attacks. The Isolation Forest reaches F1 ≈ 0.13 on both splits.
+score greatly overstates generalisation to unseen attacks. The Isolation Forest reaches F1 0.23 (random split) and
+0.12 (day split). An earlier run on a 150k-rows-per-file subsample (`reports/benchmark_subsample_150k/`) gave
+matching conclusions (F1 0.9967 and 0.544).
 
 ## Status
 
 * Implemented and tested: all five agents, the coordinator, the API, the dashboard, the loopback lab, the Zeek/Suricata adapters,
   live NVD retrieval (one live query verified), the offline demo, and the benchmark pipeline (on synthetic data only).
 * Not executed here: the Docker/Zeek/Suricata lab (Docker unavailable), the live ATT&CK bundle download, the UNSW-NB15
-  benchmark (dataset not present), CICIDS2017 on the full dataset (run on a documented 150k-rows-per-file
-  subsample), and the optional LLM providers.
+  benchmark (dataset not present), and the optional LLM providers.
