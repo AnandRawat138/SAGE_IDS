@@ -41,7 +41,8 @@ DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
 def _norm_label(x: str) -> str:
     x = str(x).strip()
-    x = re.sub(r"Web Attack\s*\W+\s*", "Web Attack - ", x)      # fixes the mis-encoded dash
+    # the published CSVs contain a mis-encoded dash ("�" or its latin-1 rendering "ï¿½")
+    x = re.sub(r"^Web Attack\s*\S*\s+(?=Brute Force|XSS|Sql Injection)", "Web Attack - ", x)
     return "BENIGN" if x.upper() == "BENIGN" else x
 
 
@@ -76,12 +77,12 @@ def load(data_dir: Path, max_rows: int | None = None, seed: int = 0) -> tuple[pd
     df = pd.concat(frames, ignore_index=True)
     df[LABEL] = df[LABEL].map(_norm_label)
     for c in FEATURES:
-        df[c] = pd.to_numeric(df[c], errors="coerce").astype("float64")
+        df[c] = pd.to_numeric(df[c], errors="coerce").astype("float32")   # float32 halves memory
     return df, {"files": file_manifest(files), "schema": SCHEMA_ID, "max_rows_per_file": max_rows}
 
 
 def quality_report(df: pd.DataFrame, features: list[str]) -> dict:
-    X = df[features].to_numpy(dtype="float64")
+    X = df[features].to_numpy(dtype="float32")
     inf = np.isinf(X).sum(axis=0)
     nan = np.isnan(X).sum(axis=0)
     feat_dups = df.duplicated(subset=features, keep=False)

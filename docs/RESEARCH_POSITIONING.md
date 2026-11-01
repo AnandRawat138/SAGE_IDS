@@ -38,9 +38,10 @@ protocol and its guarantees**, not "an agent that attacks and patches".
   baseline gaps, rejected and accepted candidates with every criterion, the held-out test of all
   versions and ablations (window P/R/F1/FPR with CIs, per-scenario detection, latency,
   confusion matrices, McNemar tests), safety checks and audit-tamper detection.
-* `sage-ids benchmark`: CICIDS2017 with dedup-before-split, train-only preprocessing,
-  validation-selected thresholds, cross-split leakage assertions and multiple seeds. **This was not
-  run in the build environment because the dataset was not downloaded.**
+* `reports/benchmark_cicids2017_{stratified,day}.md`: CICIDS2017 with dedup-before-split, train-only
+  preprocessing, validation-selected thresholds, cross-split leakage assertions and 5 seeds, run on a
+  documented 150k-rows-per-file subsample. Random split: RF F1 0.9967. Day-held-out split: RF F1 0.544,
+  recall 0.374. The gap is a reportable finding about how optimistic random-split evaluation is.
 
 ## Gaps a journal reviewer will raise (and how to close them)
 
@@ -52,6 +53,7 @@ protocol and its guarantees**, not "an agent that attacks and patches".
 | One experiment realisation | variance | run `sage-ids experiment` with ≥5 `base_seed` values; report mean ± CI across runs |
 | Scripted operator | human factors | small user study, or at least report operator decision time and disagreement |
 | No comparison to prior systems | positioning | compare against static Suricata rules, threshold tuning by grid search, and naive retraining (partly done via ablations) |
+| CICIDS2017 run on a subsample | completeness | re-run `sage-ids benchmark` without `--max-rows` on a machine with ≥8 GB free RAM |
 | CICIDS2017 known label issues | dataset validity | also report on the corrected CICIDS2017 relabelling (Engelen et al., 2021) or CIC-IDS2018 / UNSW-NB15 |
 | LLM role untested | claim scope | either evaluate the LLM-assisted mapping against the deterministic map, or describe it as optional |
 

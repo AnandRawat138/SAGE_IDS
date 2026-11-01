@@ -83,16 +83,16 @@ Only these two HTTPS hosts are permitted.
 ## 7. Benchmark datasets (not bundled)
 
 * **CICIDS2017** (primary): download `MachineLearningCSV.zip` from
-  <https://www.unb.ca/cic/datasets/ids-2017.html> and extract the 8 CSVs to `data/datasets/cicids2017/`.
+  <https://www.unb.ca/cic/datasets/ids-2017.html> and extract the 8 CSVs to `data/datasets/cicids2017/csv/`.
 * **UNSW-NB15** (optional): place `UNSW_NB15_training-set.csv` and `UNSW_NB15_testing-set.csv` in
   `data/datasets/unsw-nb15/` (from <https://research.unsw.edu.au/projects/unsw-nb15-dataset>).
 
 ```bash
-.venv/Scripts/python -m sage_ids.cli benchmark --dataset cicids2017 --data-dir data/datasets/cicids2017 --split stratified --seeds 0 1 2 3 4
+.venv/Scripts/python -m sage_ids.cli benchmark --dataset cicids2017 --data-dir data/datasets/cicids2017/csv --split stratified --seeds 0 1 2 3 4
 ```
 
 ```bash
-.venv/Scripts/python -m sage_ids.cli benchmark --dataset cicids2017 --data-dir data/datasets/cicids2017 --split day
+.venv/Scripts/python -m sage_ids.cli benchmark --dataset cicids2017 --data-dir data/datasets/cicids2017/csv --split day
 ```
 
 ```bash

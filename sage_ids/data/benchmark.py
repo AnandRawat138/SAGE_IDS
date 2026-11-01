@@ -88,9 +88,9 @@ def _run_seed(train, val, test, features, seed: int, out: Path, n_estimators: in
 
 
 def run_benchmark(dataset: str, data_dir: Path, split: str, seeds: list[int], out_dir: Path,
-                  max_rows: int | None = None, n_estimators: int = 100) -> dict:
+                  max_rows: int | None = None, n_estimators: int = 100, artifacts_root: Path | None = None) -> dict:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    art = PROJECT_ROOT / "artifacts" / "benchmark" / dataset / stamp
+    art = (artifacts_root or PROJECT_ROOT / "artifacts") / "benchmark" / dataset / stamp
     art.mkdir(parents=True, exist_ok=True)
     if dataset == "cicids2017":
         df, manifest = cicids2017.load(data_dir, max_rows=max_rows)

@@ -66,8 +66,17 @@ def test_benchmark_end_to_end_on_synthetic_fixture(tmp_path):
         df = synthetic_cicids(600, seed)
         df.columns = [" " + c if c != "Label" else " Label" for c in df.columns]   # leading spaces as published
         df.to_csv(d / f"{day}-WorkingHours.pcap_ISCX.csv", index=False)
-    res = run_benchmark("cicids2017", d, "stratified", [0, 1], tmp_path / "out", n_estimators=20)
+    res = run_benchmark("cicids2017", d, "stratified", [0, 1], tmp_path / "out", n_estimators=20,
+                        artifacts_root=tmp_path / "artifacts")
     assert all(v == 0 for o in res["leakage_overlaps"].values() for v in o.values())
     assert res["per_seed"][0]["dropped_constant_columns_train"] == ["Bwd PSH Flags"]
     assert 0 <= res["summary"]["rf"]["f1"]["mean"] <= 1
     assert json.loads((tmp_path / "out" / "benchmark_cicids2017_stratified.json").read_text())["result_hash"]
+
+
+def test_row_hash_is_exact_for_large_float32_values():
+    from sage_ids.data.leakage import row_hashes
+    a = pd.DataFrame({"x": np.array([32036248.0, 32036246.0, -0.0, 0.0], dtype="float32")})
+    h = row_hashes(a).tolist()
+    assert h[0] != h[1]           # distinct values must never collide
+    assert h[2] == h[3]           # -0.0 and 0.0 are the same value for duplicate detection

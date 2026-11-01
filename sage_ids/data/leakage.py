@@ -11,7 +11,12 @@ class LeakageError(AssertionError):
 
 
 def row_hashes(X: pd.DataFrame) -> pd.Series:
-    return pd.util.hash_pandas_object(X.round(9), index=False)
+    """Exact-value row hashes (same equality as drop_duplicates). Values are widened to float64, which is
+    exact for float32, and -0.0 is folded to 0.0. No rounding: DataFrame.round() on float32 columns
+    corrupts large values (e.g. 32036248 -> 32036246) and would merge distinct rows."""
+    arr = X.to_numpy(dtype="float64", copy=True)
+    arr[arr == 0] = 0.0
+    return pd.util.hash_pandas_object(pd.DataFrame(arr), index=False)
 
 
 def overlap_count(a: pd.DataFrame, b: pd.DataFrame) -> int:
