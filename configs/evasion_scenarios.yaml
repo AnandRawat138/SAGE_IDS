@@ -1,0 +1,63 @@
+# Reviewed EVASIVE scenario variants, used only by the robustness evaluation (sage-ids evasion).
+# They are held separately from the main catalogue because they are not part of the finding->scenario
+# approval loop; they test whether an ACCEPTED detector survives low-and-slow / distributed variants.
+# Same safety envelope: allowlisted loopback targets only, bounded, with stop conditions.
+- id: auth-slow-guessing
+  name: Low-and-slow password guessing (sub-threshold rate)
+  technique: T1110.001
+  target_asset: lab-login-service
+  executor: auth_guessing
+  description: >
+    Password guessing with long inter-attempt delays so that the number of failures in any single
+    detection window stays below a typical per-window threshold.
+  preconditions: ["active lab enabled", "dummy login service healthy"]
+  params:
+    - {name: n_attempts, type: int, default: 18, min: 10, max: 24}
+    - {name: delay_ms, type: int, default: 2600, min: 2000, max: 4000}
+  limits: {max_requests: 24, max_seconds: 110}
+  expected_observations: ["few failed logins per window", "the attack still eventually succeeds"]
+  effect_criterion: "a guessed credential obtains HTTP 200 (successful authentication)"
+  cleanup: ["reset failure counters and lockouts", "close sockets"]
+  stop_conditions: ["credential found", "request budget reached", "time limit reached", "cancellation requested"]
+  reviewed_by: "project team (evasion set v1)"
+  reviewed_on: "2026-11-01"
+
+- id: auth-distributed-guessing
+  name: Distributed password guessing (one source per attempt)
+  technique: T1110.001
+  target_asset: lab-login-service
+  executor: auth_distributed
+  description: >
+    Password guessing where each attempt originates from a different allowlisted source address, so
+    no single source accumulates enough failures to cross a per-source threshold.
+  preconditions: ["active lab enabled", "dummy login service healthy"]
+  params:
+    - {name: n_attempts, type: int, default: 20, min: 12, max: 28}
+    - {name: delay_ms, type: int, default: 80, min: 20, max: 200}
+  limits: {max_requests: 28, max_seconds: 30}
+  expected_observations: ["one failed login per source", "the attack still eventually succeeds"]
+  effect_criterion: "a guessed credential obtains HTTP 200 (successful authentication)"
+  cleanup: ["reset failure counters and lockouts", "close sockets"]
+  stop_conditions: ["credential found", "request budget reached", "time limit reached", "cancellation requested"]
+  reviewed_by: "project team (evasion set v1)"
+  reviewed_on: "2026-11-01"
+
+- id: app-low-rate-flood
+  name: Low-rate request flood (below throttling threshold)
+  technique: T1499.002
+  target_asset: lab-test-app
+  executor: request_flood
+  description: >
+    A sustained but modest request rate from one source, intended to stay below a per-source
+    rate-limit while still exceeding ordinary benign usage.
+  preconditions: ["active lab enabled", "test application healthy"]
+  params:
+    - {name: n_requests, type: int, default: 60, min: 40, max: 90}
+    - {name: workers, type: int, default: 2, min: 1, max: 2}
+  limits: {max_requests: 90, max_seconds: 10}
+  expected_observations: ["elevated but not extreme request rate from one source"]
+  effect_criterion: "at least 90% of requests served with HTTP 200 at >= 50 requests/s (no throttling)"
+  cleanup: ["reset rate-limit windows", "close sockets"]
+  stop_conditions: ["request budget reached", "time limit reached", "cancellation requested"]
+  reviewed_by: "project team (evasion set v1)"
+  reviewed_on: "2026-11-01"

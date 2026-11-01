@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-11-01T05:34:19.017738+00:00",
+  "versions": {
+    "1": "v1-baseline",
+    "3": "candidate-p3",
+    "4": "candidate-p8"
+  },
+  "variants": {
+    "auth-slow-guessing": {
+      "base_scenario": "auth-password-guessing",
+      "executor": "auth_guessing",
+      "n_trials": 12,
+      "n_executed": 12,
+      "effect_rate": 1.0,
+      "detection_by_version": {
+        "1": {
+          "detected": 0,
+          "n": 12,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2424940095530979
+          ]
+        },
+        "3": {
+          "detected": 3,
+          "n": 12,
+          "rate": 0.25,
+          "ci95": [
+            0.08894166769488562,
+            0.5323053370816633
+          ]
+        },
+        "4": {
+          "detected": 3,
+          "n": 12,
+          "rate": 0.25,
+          "ci95": [
+            0.08894166769488562,
+            0.5323053370816633
+          ]
+        }
+      }
+    },
+    "auth-distributed-guessing": {
+      "base_scenario": "auth-password-guessing",
+      "executor": "auth_distributed",
+      "n_trials": 12,
+      "n_executed": 12,
+      "effect_rate": 1.0,
+      "detection_by_version": {
+        "1": {
+          "detected": 0,
+          "n": 12,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2424940095530979
+          ]
+        },
+        "3": {
+          "detected": 0,
+          "n": 12,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2424940095530979
+          ]
+        },
+        "4": {
+          "detected": 0,
+          "n": 12,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2424940095530979
+          ]
+        }
+      }
+    },
+    "app-low-rate-flood": {
+      "base_scenario": "app-request-flood",
+      "executor": "request_flood",
+      "n_trials": 12,
+      "n_executed": 12,
+      "effect_rate": 1.0,
+      "detection_by_version": {
+        "1": {
+          "detected": 0,
+          "n": 12,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2424940095530979
+          ]
+        },
+        "3": {
+          "detected": 0,
+          "n": 12,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2424940095530979
+          ]
+        },
+        "4": {
+          "detected": 9,
+          "n": 12,
+          "rate": 0.75,
+          "ci95": [
+            0.4676946629183366,
+            0.9110583323051143
+          ]
+        }
+      }
+    }
+  }
+}

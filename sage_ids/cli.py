@@ -76,6 +76,10 @@ def main(argv: list[str] | None = None) -> int:
     er = sub.add_parser("experiment-report", help="re-generate the experiment report from an experiment database")
     er.add_argument("--experiment-db", required=True)
     er.add_argument("--out", default="reports")
+    evs = sub.add_parser("evasion", help="run reviewed evasive variants against accepted detectors (needs active lab)")
+    evs.add_argument("--experiment-db", required=True)
+    evs.add_argument("--out", default="reports")
+    evs.add_argument("--trials", type=int, default=12)
     le = sub.add_parser("llm-eval", help="measure the configured LLM against the deterministic scenario mapper")
     le.add_argument("--mode", choices=["fixture", "live"], default="fixture")
     le.add_argument("--out", default="reports")
@@ -115,6 +119,16 @@ def main(argv: list[str] | None = None) -> int:
         extra.setdefault("log", []).append("report regenerated from the database by `sage-ids experiment-report`")
         res = collect_results(s, Database(s.database_url), path, s.path(args.out), extra)
         print(f"wrote {s.path(args.out) / 'experiment_report.md'} (audit valid: {res['audit_chain']['valid']})")
+        return 0
+    if args.cmd == "evasion":
+        import shutil, sqlite3, tempfile, uuid
+        from .evaluation.evasion import run_evasion
+        s = load_settings(args.config)
+        src = Path(args.experiment_db).resolve()
+        work = Path(tempfile.gettempdir()) / f"sage_evasion_{uuid.uuid4().hex}.db"
+        con = sqlite3.connect(src); dst = sqlite3.connect(work); con.backup(dst); con.close(); dst.close()
+        res = run_evasion(s, work, s.path(args.out))
+        print(json.dumps({"versions": res["versions"], "report": str(s.path(args.out) / "evasion_report.md")}, indent=2))
         return 0
     if args.cmd == "llm-eval":
         from .evaluation.llm_eval import run_llm_eval

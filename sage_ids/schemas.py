@@ -45,7 +45,7 @@ class ScenarioSpec(Strict):
     name: str
     technique: str
     target_asset: str
-    executor: Literal["recon_probe", "auth_guessing", "request_flood"]
+    executor: Literal["recon_probe", "auth_guessing", "request_flood", "auth_distributed"]
     description: str
     preconditions: list[str]
     params: list[ParamSpec] = []

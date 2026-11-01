@@ -50,6 +50,7 @@ class ExecContext:
     target_host: str
     ports: dict[str, int | list[int]]
     connect_timeout: float = 0.5
+    source_cidr: str = "127.0.2.0/24"
     cancel: threading.Event = field(default_factory=threading.Event)
 
 
@@ -120,6 +121,42 @@ def _auth(spec: ScenarioSpec, params: dict, src_ip: str, ctx: ExecContext, rng: 
                            "criterion": spec.effect_criterion}
 
 
+def _auth_distributed(spec: ScenarioSpec, params: dict, src_ip: str, ctx: ExecContext, rng: random.Random,
+                      out: TrialOutcome) -> None:
+    """Evasive variant: each guess comes from a different allowlisted source address, so no single
+    source crosses a per-source failure threshold. Sources are drawn from the attacker CIDR only."""
+    import ipaddress
+
+    n = min(params["n_attempts"], int(spec.limits["max_requests"]))
+    words = rng.sample(LAB_WORDLIST, k=min(n - 1, len(LAB_WORDLIST)))
+    pos = rng.randint(1, n)
+    guesses = words[: pos - 1] + [LAB_TARGET_PASSWORD]
+    port = int(ctx.ports["login"])
+    net = ipaddress.ip_network(ctx.source_cidr)
+    hosts = [str(h) for h in net.hosts()][20:20 + max(n, 2)]
+    deadline = out.started_at + spec.limits["max_seconds"]
+    codes: list[int] = []
+    used_sources: set[str] = set()
+    for i, pw in enumerate(guesses):
+        if ctx.cancel.is_set() or time.time() > deadline:
+            out.stop_reason = "cancellation requested" if ctx.cancel.is_set() else "time limit reached"
+            break
+        src = hosts[i % len(hosts)]
+        used_sources.add(src)
+        connect = partial(ctx.allowlist.guarded_connect, ctx.target_host, port, src, ctx.connect_timeout)
+        codes.append(http_request(connect, "POST", "/login", {"username": LAB_TARGET_USER, "password": pw}))
+        out.requests_sent += 1
+        if codes[-1] == 200:
+            out.stop_reason = "credential found"
+            break
+        time.sleep(params["delay_ms"] / 1000)
+    out.stop_reason = out.stop_reason or "request budget reached"
+    out.effect_occurred = 200 in codes
+    out.effect_evidence = {"attempts": len(codes), "password_position": pos, "distinct_sources": len(used_sources),
+                           "status_counts": {str(c): codes.count(c) for c in sorted(set(codes))},
+                           "criterion": spec.effect_criterion}
+
+
 def _flood(spec: ScenarioSpec, params: dict, src_ip: str, ctx: ExecContext, rng: random.Random,
            out: TrialOutcome) -> None:
     n = min(params["n_requests"], int(spec.limits["max_requests"]))
@@ -160,8 +197,10 @@ def _flood(spec: ScenarioSpec, params: dict, src_ip: str, ctx: ExecContext, rng:
                            "criterion": spec.effect_criterion}
 
 
-EXECUTORS = {"recon_probe": _recon, "auth_guessing": _auth, "request_flood": _flood}
-EXECUTOR_PORT = {"recon_probe": "decoy", "auth_guessing": "login", "request_flood": "test_app"}
+EXECUTORS = {"recon_probe": _recon, "auth_guessing": _auth, "request_flood": _flood,
+             "auth_distributed": _auth_distributed}
+EXECUTOR_PORT = {"recon_probe": "decoy", "auth_guessing": "login", "request_flood": "test_app",
+                 "auth_distributed": "login"}
 
 
 def execute_trial(spec: ScenarioSpec, params: dict, src_ip: str, ctx: ExecContext, seed: int,
@@ -197,4 +236,5 @@ def default_context(settings, cancel: threading.Event | None = None) -> ExecCont
     return ExecContext(allowlist=Allowlist.from_settings(lab), active_enabled=lab.active_scenarios_enabled,
                        target_host=LAB_HOST, ports={"login": lab.login_service_port, "test_app": lab.test_app_port,
                                                     "decoy": lab.decoy_ports[0]},
-                       connect_timeout=lab.connect_timeout_s, cancel=cancel or threading.Event())
+                       connect_timeout=lab.connect_timeout_s, source_cidr=lab.attacker_source_cidr,
+                       cancel=cancel or threading.Event())

@@ -13,9 +13,13 @@
 ## Scenario and attacker scope
 * Three reviewed, bounded scenarios: TCP service discovery, password guessing and request flood.
   Their parameters are randomised within reviewed bounds.
-* There is **no adaptive or evasive attacker**. An accepted threshold can be evaded by staying below it,
-  for example with slow guessing. Password guessing that succeeds within the first one or two attempts
-  is inherently hard to detect behaviourally, and the reported detection rates include those trials.
+* The main experiment uses **non-evasive** attacks. A dedicated robustness evaluation (`sage-ids evasion`,
+  `reports/evasion_report.md`) runs reviewed low-and-slow, distributed and low-rate variants against the
+  accepted detectors and shows they are **evadable**: the accepted password-guessing detector drops from
+  27/30 on the normal attack to 3/12 (slow) and 0/12 (distributed), and the flood detector catches only
+  9/12 of a low-rate flood. The accepted fixes are genuine improvements against the tested threat, not
+  robust defences. Password guessing that succeeds within the first one or two attempts is inherently
+  hard to detect behaviourally, and the reported detection rates include those trials.
 * Failure to reproduce a scenario's effect is recorded as `weakness_not_confirmed`, never as "secure".
 
 ## Statistics
