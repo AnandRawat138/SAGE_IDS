@@ -1,0 +1,3946 @@
+{
+  "generated_at": "2026-11-01T06:44:11.692320+00:00",
+  "seeds": [
+    20261030,
+    20261101,
+    20261102
+  ],
+  "per_seed": [
+    {
+      "seed": 20261030,
+      "database": "E:\\SAGE-IDS\\data\\experiment_20261101T054118Z.db",
+      "timing_clean": true,
+      "cases": {
+        "A_password_guessing": {
+          "final_state": "accepted",
+          "accepted_version": 3
+        },
+        "B_request_flood": {
+          "final_state": "accepted",
+          "accepted_version": 4
+        },
+        "C_recon": {
+          "final_state": "rejected",
+          "accepted_version": null
+        }
+      },
+      "final_test": {
+        "n_events": 8169,
+        "n_windows_labelled": 189,
+        "label_counts": {
+          "benign": 88,
+          "recon": 36,
+          "bruteforce": 33,
+          "flood": 32
+        },
+        "versions": {
+          "1": {
+            "name": "v1-baseline",
+            "status": "accepted",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.3564356435643564,
+              "f1": 0.5255474452554745,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                36,
+                0,
+                88,
+                65
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.5751633986928104,
+                "recall": 1.0,
+                "f1": 0.7302904564315352,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  33,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.14234110014513135,
+              "ms_per_window": 0.753127513995404
+            }
+          },
+          "2": {
+            "name": "candidate-p2",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 0.7840909090909091,
+              "recall": 0.6831683168316832,
+              "f1": 0.7301587301587301,
+              "fpr": 0.2159090909090909,
+              "fpr_ci95": [
+                0.14280824647394696,
+                0.31277531449034035
+              ],
+              "tp_fp_tn_fn": [
+                69,
+                19,
+                69,
+                32
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6831683168316832,
+                "recall": 0.7840909090909091,
+                "f1": 0.7301587301587301,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 0.6346153846153846,
+                "recall": 1.0,
+                "f1": 0.7764705882352941,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  69,
+                  19,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  33,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 0.0010073184967041016,
+                "latency_p95_s": 0.010219347476959186
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24662559991702437,
+              "ms_per_window": 1.30489735405833
+            }
+          },
+          "3": {
+            "name": "candidate-p3",
+            "status": "retired",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.6435643564356436,
+              "f1": 0.7831325301204819,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                65,
+                0,
+                88,
+                36
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.7096774193548387,
+                "recall": 1.0,
+                "f1": 0.8301886792452831,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.06126141548156738,
+                "latency_p95_s": 0.11892454624176024
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.2435637000016868,
+              "ms_per_window": 1.2886968254057503
+            }
+          },
+          "4": {
+            "name": "candidate-p8",
+            "status": "accepted",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9504950495049505,
+              "f1": 0.9746192893401016,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                96,
+                0,
+                88,
+                5
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.946236559139785,
+                "recall": 1.0,
+                "f1": 0.9723756906077348,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.589200258255005,
+                "latency_p95_s": 4.836278641223907
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.06126141548156738,
+                "latency_p95_s": 0.11892454624176024
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.246361100114882,
+              "ms_per_window": 1.3034978842057248
+            }
+          },
+          "5": {
+            "name": "candidate-p9",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9504950495049505,
+              "f1": 0.9746192893401016,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                96,
+                0,
+                88,
+                5
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.946236559139785,
+                "recall": 1.0,
+                "f1": 0.9723756906077348,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.589200258255005,
+                "latency_p95_s": 4.836278641223907
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.06126141548156738,
+                "latency_p95_s": 0.11892454624176024
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 1.1233797073364258,
+                "latency_p95_s": 4.329794526100158
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.34686189983040094,
+              "ms_per_window": 1.8352481472507987
+            }
+          },
+          "6": {
+            "name": "candidate-p11",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9504950495049505,
+              "f1": 0.9746192893401016,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                96,
+                0,
+                88,
+                5
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.946236559139785,
+                "recall": 1.0,
+                "f1": 0.9723756906077348,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.589200258255005,
+                "latency_p95_s": 4.836278641223907
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.06126141548156738,
+                "latency_p95_s": 0.11892454624176024
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24699759995564818,
+              "ms_per_window": 1.3068656082309427
+            }
+          },
+          "7": {
+            "name": "ABL-iforest-alerting",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 0.9852941176470589,
+              "recall": 0.6633663366336634,
+              "f1": 0.7928994082840237,
+              "fpr": 0.011363636363636364,
+              "fpr_ci95": [
+                0.0020087852955039953,
+                0.061594939563070134
+              ],
+              "tp_fp_tn_fn": [
+                67,
+                1,
+                87,
+                34
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.5751633986928104,
+                "recall": 1.0,
+                "f1": 0.7302904564315352,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  33,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 1,
+                "n": 30,
+                "rate": 0.03333333333333333,
+                "ci95": [
+                  0.005908590316197976,
+                  0.16670391146115726
+                ],
+                "latency_median_s": 3.948871374130249,
+                "latency_p95_s": 3.948871374130249
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 1.906982183456421,
+                "latency_p95_s": 3.7735822677612303
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.14294479973614216,
+              "ms_per_window": 0.7563216917256199
+            }
+          },
+          "8": {
+            "name": "ABL-self-training",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.3564356435643564,
+              "f1": 0.5255474452554745,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                36,
+                0,
+                88,
+                65
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.5751633986928104,
+                "recall": 1.0,
+                "f1": 0.7302904564315352,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  33,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.27752469992265105,
+              "ms_per_window": 1.4683846556754023
+            }
+          },
+          "9": {
+            "name": "ABL-verified-retrain-all",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9900990099009901,
+              "f1": 0.9950248756218906,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.04182706729714562
+              ],
+              "tp_fp_tn_fn": [
+                100,
+                0,
+                88,
+                1
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.9887640449438202,
+                "recall": 1.0,
+                "f1": 0.9943502824858758,
+                "support": 88
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  88,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  33,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.589200258255005,
+                "latency_p95_s": 4.836278641223907
+              },
+              "auth-password-guessing": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 1.795641541481018,
+                "latency_p95_s": 3.740851950645446
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.2076185941696167,
+                "latency_p95_s": 4.845523107051849
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.2106411000713706,
+              "ms_per_window": 1.1145031749807968
+            }
+          }
+        },
+        "rss_mb": 253.0625,
+        "mcnemar_vs_v1": {
+          "app-request-flood": {
+            "2": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 1,
+              "c_baseline_only": 0,
+              "discordant": 1,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            }
+          },
+          "auth-password-guessing": {
+            "2": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            }
+          },
+          "recon-tcp-probe": {
+            "2": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            }
+          }
+        },
+        "v1_id": "1"
+      }
+    },
+    {
+      "seed": 20261101,
+      "database": "E:\\SAGE-IDS\\data\\experiment_20261101T055852Z.db",
+      "timing_clean": true,
+      "cases": {
+        "A_password_guessing": {
+          "final_state": "accepted",
+          "accepted_version": 3
+        },
+        "B_request_flood": {
+          "final_state": "accepted",
+          "accepted_version": 4
+        },
+        "C_recon": {
+          "final_state": "rejected",
+          "accepted_version": null
+        }
+      },
+      "final_test": {
+        "n_events": 8174,
+        "n_windows_labelled": 204,
+        "label_counts": {
+          "benign": 103,
+          "recon": 36,
+          "bruteforce": 33,
+          "flood": 32
+        },
+        "versions": {
+          "1": {
+            "name": "v1-baseline",
+            "status": "accepted",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.3564356435643564,
+              "f1": 0.5255474452554745,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                36,
+                0,
+                103,
+                65
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6130952380952381,
+                "recall": 1.0,
+                "f1": 0.7601476014760148,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  33,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.16014930000528693,
+              "ms_per_window": 0.7850455882612104
+            }
+          },
+          "2": {
+            "name": "candidate-p2",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 0.7701149425287356,
+              "recall": 0.6633663366336634,
+              "f1": 0.7127659574468085,
+              "fpr": 0.1941747572815534,
+              "fpr_ci95": [
+                0.1293630880310332,
+                0.2809781721908545
+              ],
+              "tp_fp_tn_fn": [
+                67,
+                20,
+                83,
+                34
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.7094017094017094,
+                "recall": 0.8058252427184466,
+                "f1": 0.7545454545454545,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 0.6078431372549019,
+                "recall": 0.9393939393939394,
+                "f1": 0.7380952380952381,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  83,
+                  20,
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  31,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 28,
+                "n": 30,
+                "rate": 0.9333333333333333,
+                "ci95": [
+                  0.7867654148312584,
+                  0.9815229763754831
+                ],
+                "latency_median_s": 0.013182997703552246,
+                "latency_p95_s": 0.025663208961486817
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.247675699647516,
+              "ms_per_window": 1.2140965668995882
+            }
+          },
+          "3": {
+            "name": "candidate-p3",
+            "status": "retired",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.6435643564356436,
+              "f1": 0.7831325301204819,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                65,
+                0,
+                103,
+                36
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.7410071942446043,
+                "recall": 1.0,
+                "f1": 0.8512396694214877,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.08979463577270508,
+                "latency_p95_s": 0.16781165599822997
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24639240000396967,
+              "ms_per_window": 1.2078058823724003
+            }
+          },
+          "4": {
+            "name": "candidate-p8",
+            "status": "accepted",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9504950495049505,
+              "f1": 0.9746192893401016,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                96,
+                0,
+                103,
+                5
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.9537037037037037,
+                "recall": 1.0,
+                "f1": 0.976303317535545,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.509280204772949,
+                "latency_p95_s": 4.715492975711822
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.08979463577270508,
+                "latency_p95_s": 0.16781165599822997
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24590039998292923,
+              "ms_per_window": 1.2053941175633787
+            }
+          },
+          "5": {
+            "name": "candidate-p9",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9504950495049505,
+              "f1": 0.9746192893401016,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                96,
+                0,
+                103,
+                5
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.9537037037037037,
+                "recall": 1.0,
+                "f1": 0.976303317535545,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.509280204772949,
+                "latency_p95_s": 4.715492975711822
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.08979463577270508,
+                "latency_p95_s": 0.16781165599822997
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 1.2711944580078125,
+                "latency_p95_s": 3.7307096719741812
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.35142500000074506,
+              "ms_per_window": 1.7226715686311032
+            }
+          },
+          "6": {
+            "name": "candidate-p11",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9504950495049505,
+              "f1": 0.9746192893401016,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                96,
+                0,
+                103,
+                5
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.9537037037037037,
+                "recall": 1.0,
+                "f1": 0.976303317535545,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.8787878787878788,
+                "f1": 0.9354838709677419,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  29,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.509280204772949,
+                "latency_p95_s": 4.715492975711822
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.08979463577270508,
+                "latency_p95_s": 0.16781165599822997
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.25089980009943247,
+              "ms_per_window": 1.229900980879571
+            }
+          },
+          "7": {
+            "name": "ABL-iforest-alerting",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.6237623762376238,
+              "f1": 0.7682926829268293,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                63,
+                0,
+                103,
+                38
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6130952380952381,
+                "recall": 1.0,
+                "f1": 0.7601476014760148,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  33,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 24,
+                "n": 30,
+                "rate": 0.8,
+                "ci95": [
+                  0.6269430343619583,
+                  0.9049489287811706
+                ],
+                "latency_median_s": 1.986053705215454,
+                "latency_p95_s": 4.490275287628173
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.21279750019311905,
+              "ms_per_window": 1.043125000946662
+            }
+          },
+          "8": {
+            "name": "ABL-self-training",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.3564356435643564,
+              "f1": 0.5255474452554745,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                36,
+                0,
+                103,
+                65
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6130952380952381,
+                "recall": 1.0,
+                "f1": 0.7601476014760148,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 33
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  33,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  32,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.2104714997112751,
+              "ms_per_window": 1.0317230378003681
+            }
+          },
+          "9": {
+            "name": "ABL-verified-retrain-all",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9801980198019802,
+              "f1": 0.99,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03595475877546724
+              ],
+              "tp_fp_tn_fn": [
+                99,
+                0,
+                103,
+                2
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.9809523809523809,
+                "recall": 1.0,
+                "f1": 0.9903846153846154,
+                "support": 103
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.9696969696969697,
+                "f1": 0.9846153846153847,
+                "support": 33
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 0.96875,
+                "f1": 0.9841269841269841,
+                "support": 32
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  103,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  32,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  31,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  36
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.509280204772949,
+                "latency_p95_s": 4.715492975711822
+              },
+              "auth-password-guessing": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.1873650550842285,
+                "latency_p95_s": 4.7217539787292475
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.120571255683899,
+                "latency_p95_s": 4.942288708686829
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.20808929996564984,
+              "ms_per_window": 1.020045588066911
+            }
+          }
+        },
+        "rss_mb": 247.7734375,
+        "mcnemar_vs_v1": {
+          "app-request-flood": {
+            "2": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            }
+          },
+          "auth-password-guessing": {
+            "2": {
+              "b_candidate_only": 28,
+              "c_baseline_only": 0,
+              "discordant": 28,
+              "p_value": 7.450580596923828e-09,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 24,
+              "c_baseline_only": 0,
+              "discordant": 24,
+              "p_value": 1.1920928955078125e-07,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            }
+          },
+          "recon-tcp-probe": {
+            "2": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            }
+          }
+        },
+        "v1_id": "1"
+      }
+    },
+    {
+      "seed": 20261102,
+      "database": "E:\\SAGE-IDS\\data\\experiment_20261101T061725Z.db",
+      "timing_clean": false,
+      "cases": {
+        "A_password_guessing": {
+          "final_state": "accepted",
+          "accepted_version": 3
+        },
+        "B_request_flood": {
+          "final_state": "accepted",
+          "accepted_version": 4
+        },
+        "C_recon": {
+          "final_state": "rejected",
+          "accepted_version": null
+        }
+      },
+      "final_test": {
+        "n_events": 8173,
+        "n_windows_labelled": 201,
+        "label_counts": {
+          "benign": 100,
+          "recon": 37,
+          "bruteforce": 34,
+          "flood": 30
+        },
+        "versions": {
+          "1": {
+            "name": "v1-baseline",
+            "status": "accepted",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.36633663366336633,
+              "f1": 0.5362318840579711,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03699349876899627
+              ],
+              "tp_fp_tn_fn": [
+                37,
+                0,
+                100,
+                64
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6097560975609756,
+                "recall": 1.0,
+                "f1": 0.7575757575757576,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 34
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  34,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  30,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.14254690008237958,
+              "ms_per_window": 0.709188557623779
+            }
+          },
+          "2": {
+            "name": "candidate-p2",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 0.8117647058823529,
+              "recall": 0.6831683168316832,
+              "f1": 0.7419354838709677,
+              "fpr": 0.16,
+              "fpr_ci95": [
+                0.10095288451828571,
+                0.2442026946446318
+              ],
+              "tp_fp_tn_fn": [
+                69,
+                16,
+                84,
+                32
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.7241379310344828,
+                "recall": 0.84,
+                "f1": 0.7777777777777778,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 0.6666666666666666,
+                "recall": 0.9411764705882353,
+                "f1": 0.7804878048780488,
+                "support": 34
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  84,
+                  16,
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  32,
+                  0,
+                  0
+                ],
+                [
+                  30,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 28,
+                "n": 30,
+                "rate": 0.9333333333333333,
+                "ci95": [
+                  0.7867654148312584,
+                  0.9815229763754831
+                ],
+                "latency_median_s": 0.02018272876739502,
+                "latency_p95_s": 0.02756589651107788
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24503599992021918,
+              "ms_per_window": 1.2190845767175085
+            }
+          },
+          "3": {
+            "name": "candidate-p3",
+            "status": "retired",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.6732673267326733,
+              "f1": 0.8047337278106509,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03699349876899627
+              ],
+              "tp_fp_tn_fn": [
+                68,
+                0,
+                100,
+                33
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.7518796992481203,
+                "recall": 1.0,
+                "f1": 0.8583690987124464,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.9117647058823529,
+                "f1": 0.9538461538461539,
+                "support": 34
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  31,
+                  0,
+                  0
+                ],
+                [
+                  30,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.11855411529541016,
+                "latency_p95_s": 0.1710010528564453
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24354439973831177,
+              "ms_per_window": 1.2116636802901084
+            }
+          },
+          "4": {
+            "name": "candidate-p8",
+            "status": "accepted",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9702970297029703,
+              "f1": 0.9849246231155779,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03699349876899627
+              ],
+              "tp_fp_tn_fn": [
+                98,
+                0,
+                100,
+                3
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.970873786407767,
+                "recall": 1.0,
+                "f1": 0.9852216748768473,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.9117647058823529,
+                "f1": 0.9538461538461539,
+                "support": 34
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  31,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.6128796339035034,
+                "latency_p95_s": 4.785097563266754
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.11855411529541016,
+                "latency_p95_s": 0.1710010528564453
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.245195799972862,
+              "ms_per_window": 1.2198796018550349
+            }
+          },
+          "5": {
+            "name": "candidate-p9",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9702970297029703,
+              "f1": 0.9849246231155779,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03699349876899627
+              ],
+              "tp_fp_tn_fn": [
+                98,
+                0,
+                100,
+                3
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.970873786407767,
+                "recall": 1.0,
+                "f1": 0.9852216748768473,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.9117647058823529,
+                "f1": 0.9538461538461539,
+                "support": 34
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  31,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.6128796339035034,
+                "latency_p95_s": 4.785097563266754
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.11855411529541016,
+                "latency_p95_s": 0.1710010528564453
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 1.219611644744873,
+                "latency_p95_s": 4.461038947105407
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.3516053999774158,
+              "ms_per_window": 1.7492805969025662
+            }
+          },
+          "6": {
+            "name": "candidate-p11",
+            "status": "rejected",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.9702970297029703,
+              "f1": 0.9849246231155779,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03699349876899627
+              ],
+              "tp_fp_tn_fn": [
+                98,
+                0,
+                100,
+                3
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.970873786407767,
+                "recall": 1.0,
+                "f1": 0.9852216748768473,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 1.0,
+                "recall": 0.9117647058823529,
+                "f1": 0.9538461538461539,
+                "support": 34
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  31,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.6128796339035034,
+                "latency_p95_s": 4.785097563266754
+              },
+              "auth-password-guessing": {
+                "detected": 27,
+                "n": 30,
+                "rate": 0.9,
+                "ci95": [
+                  0.7437891726682571,
+                  0.9654001115225814
+                ],
+                "latency_median_s": 0.11855411529541016,
+                "latency_p95_s": 0.1710010528564453
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.24765199981629848,
+              "ms_per_window": 1.2320995015736242
+            }
+          },
+          "7": {
+            "name": "ABL-iforest-alerting",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 0.9855072463768116,
+              "recall": 0.6732673267326733,
+              "f1": 0.8,
+              "fpr": 0.01,
+              "fpr_ci95": [
+                0.0017674320446096452,
+                0.05448619674900669
+              ],
+              "tp_fp_tn_fn": [
+                68,
+                1,
+                99,
+                33
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6097560975609756,
+                "recall": 1.0,
+                "f1": 0.7575757575757576,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 34
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  34,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  30,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 28,
+                "n": 30,
+                "rate": 0.9333333333333333,
+                "ci95": [
+                  0.7867654148312584,
+                  0.9815229763754831
+                ],
+                "latency_median_s": 2.01151442527771,
+                "latency_p95_s": 4.723909246921539
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.14227009983733296,
+              "ms_per_window": 0.7078114419767809
+            }
+          },
+          "8": {
+            "name": "ABL-self-training",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 1.0,
+              "recall": 0.36633663366336633,
+              "f1": 0.5362318840579711,
+              "fpr": 0.0,
+              "fpr_ci95": [
+                0.0,
+                0.03699349876899627
+              ],
+              "tp_fp_tn_fn": [
+                37,
+                0,
+                100,
+                64
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 0.6097560975609756,
+                "recall": 1.0,
+                "f1": 0.7575757575757576,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 34
+              },
+              "flood": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  100,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  34,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  30,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "auth-password-guessing": {
+                "detected": 0,
+                "n": 30,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.11351339476145204
+                ],
+                "latency_median_s": null,
+                "latency_p95_s": null
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.20798199996352196,
+              "ms_per_window": 1.0347363182264775
+            }
+          },
+          "9": {
+            "name": "ABL-verified-retrain-all",
+            "status": "ablation",
+            "window_binary": {
+              "precision": 0.9901960784313726,
+              "recall": 1.0,
+              "f1": 0.9950738916256158,
+              "fpr": 0.01,
+              "fpr_ci95": [
+                0.0017674320446096452,
+                0.05448619674900669
+              ],
+              "tp_fp_tn_fn": [
+                101,
+                1,
+                99,
+                0
+              ]
+            },
+            "per_class": {
+              "benign": {
+                "precision": 1.0,
+                "recall": 0.99,
+                "f1": 0.9949748743718593,
+                "support": 100
+              },
+              "bruteforce": {
+                "precision": 0.9714285714285714,
+                "recall": 1.0,
+                "f1": 0.9855072463768116,
+                "support": 34
+              },
+              "flood": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 30
+              },
+              "recon": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 37
+              }
+            },
+            "confusion_matrix": {
+              "labels": [
+                "benign",
+                "bruteforce",
+                "flood",
+                "recon"
+              ],
+              "matrix": [
+                [
+                  99,
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  34,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  37
+                ]
+              ]
+            },
+            "per_scenario": {
+              "app-request-flood": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.6128796339035034,
+                "latency_p95_s": 4.785097563266754
+              },
+              "auth-password-guessing": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 1.9599241018295288,
+                "latency_p95_s": 4.722713983058929
+              },
+              "recon-tcp-probe": {
+                "detected": 30,
+                "n": 30,
+                "rate": 1.0,
+                "ci95": [
+                  0.886486605238548,
+                  1.0
+                ],
+                "latency_median_s": 2.111516237258911,
+                "latency_p95_s": 4.633969724178314
+              }
+            },
+            "cost": {
+              "eval_seconds_total": 0.27972690016031265,
+              "ms_per_window": 1.3916761202005605
+            }
+          }
+        },
+        "rss_mb": 257.23046875,
+        "mcnemar_vs_v1": {
+          "app-request-flood": {
+            "2": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            }
+          },
+          "auth-password-guessing": {
+            "2": {
+              "b_candidate_only": 28,
+              "c_baseline_only": 0,
+              "discordant": 28,
+              "p_value": 7.450580596923828e-09,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 27,
+              "c_baseline_only": 0,
+              "discordant": 27,
+              "p_value": 1.4901161193847656e-08,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 28,
+              "c_baseline_only": 0,
+              "discordant": 28,
+              "p_value": 7.450580596923828e-09,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 30,
+              "c_baseline_only": 0,
+              "discordant": 30,
+              "p_value": 1.862645149230957e-09,
+              "alternative": "two-sided"
+            }
+          },
+          "recon-tcp-probe": {
+            "2": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "3": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "4": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "5": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "6": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "7": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "8": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            },
+            "9": {
+              "b_candidate_only": 0,
+              "c_baseline_only": 0,
+              "discordant": 0,
+              "p_value": 1.0,
+              "alternative": "two-sided"
+            }
+          }
+        },
+        "v1_id": "1"
+      }
+    }
+  ],
+  "aggregate": {
+    "case_decisions": {
+      "A_password_guessing": [
+        "accepted",
+        "accepted",
+        "accepted"
+      ],
+      "B_request_flood": [
+        "accepted",
+        "accepted",
+        "accepted"
+      ],
+      "C_recon": [
+        "rejected",
+        "rejected",
+        "rejected"
+      ]
+    },
+    "v1_detection_by_scenario": {
+      "app-request-flood": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "auth-password-guessing": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "recon-tcp-probe": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "accepted_detection_by_scenario": {
+      "app-request-flood": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "auth-password-guessing": {
+        "mean": 0.9,
+        "ci95": [
+          0.9,
+          0.9
+        ],
+        "values": [
+          0.9,
+          0.9,
+          0.9
+        ]
+      },
+      "recon-tcp-probe": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "timing_clean_all": false
+  }
+}

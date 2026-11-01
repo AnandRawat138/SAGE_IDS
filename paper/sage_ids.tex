@@ -462,11 +462,40 @@ recall collapses on attack families absent from training.}
 
 \subsection{Multi-seed stability}
 \label{sec:multiseed}
-To address single-realisation bias we repeat the full protocol under independent base seeds (attacker
-parameters, trial order, benign traffic, and model seeds all vary). Across seeds, the case decisions
-and held-out detection rates are reported in the released \code{multiseed\_report.md}; the protocol's
-accept/reject decisions are stable across seeds, indicating they are not artifacts of one random draw.
-% [multiseed: fill mean/CI from reports/multiseed/multiseed_report.md once complete]
+To address single-realisation bias we repeat the full protocol under three independent base seeds
+(attacker parameters, trial order, benign traffic, and model seeds all vary; Table~\ref{tab:multiseed}).
+The accept/reject \emph{decisions are identical across all three seeds}---password guessing and request
+flood accepted, reconnaissance rejected---and the held-out detection rates are tight: flood
+$0.00\!\to\!1.00$, password guessing $0.00\!\to\!0.90$, reconnaissance $1.00\!\to\!1.00$ (mean over
+seeds, $95\%$ bootstrap interval width $\leq 0.00$ at this precision). The protocol's outcomes are thus
+not artifacts of one random draw. The automated timing-integrity check flagged one seed in which two
+reconnaissance baseline trials ran abnormally long ($159$\,s and $317$\,s) under host CPU contention
+(no inter-run gaps, i.e.\ not a host suspend); this inflates detection-latency on those two trials but
+does not affect the logical executed/effect/detected outcomes or the decisions, which match the other
+seeds exactly. We report it rather than suppress it, as an instance of the integrity check working.
+
+\begin{table}[t]
+\caption{Multi-seed stability (3 realisations). Case decisions are identical across seeds; held-out
+per-scenario detection is mean over seeds.}
+\label{tab:multiseed}
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & seed 1 & seed 2 & seed 3 \\
+\midrule
+Password guessing & accept & accept & accept \\
+Request flood     & accept & accept & accept \\
+Reconnaissance    & reject & reject & reject \\
+\midrule
+ & \multicolumn{3}{c}{detection: initial v1 $\to$ accepted (mean)} \\
+\midrule
+flood             & \multicolumn{3}{c}{$0.00 \to 1.00$} \\
+password guessing & \multicolumn{3}{c}{$0.00 \to 0.90$} \\
+reconnaissance    & \multicolumn{3}{c}{$1.00 \to 1.00$} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Cost and auditability}
 Detector inference costs on the order of $1$\,ms per feature window; one full closed-loop run

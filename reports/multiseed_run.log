@@ -1,0 +1,25 @@
+{
+  "seeds": [
+    20261030,
+    20261101,
+    20261102
+  ],
+  "decisions": {
+    "A_password_guessing": [
+      "accepted",
+      "accepted",
+      "accepted"
+    ],
+    "B_request_flood": [
+      "accepted",
+      "accepted",
+      "accepted"
+    ],
+    "C_recon": [
+      "rejected",
+      "rejected",
+      "rejected"
+    ]
+  },
+  "timing_clean_all": false
+}

@@ -27,7 +27,9 @@
   are finite (30 by default), so small differences are not resolvable.
 * The experiment script acts as the operator, and the order in which candidates are tried is fixed in
   advance. This is not an independent human evaluation.
-* One experiment run equals one realisation. Repeat runs (different `base_seed`) give variance across runs.
+* Multi-seed: 3 independent seeds give identical accept/reject decisions and tight detection intervals
+  (`reports/multiseed/`). One seed had two over-long recon baseline trials from host CPU contention
+  (flagged by the timing-integrity check; outcomes unaffected). More seeds would tighten the intervals further.
 
 ## Learning
 * The laboratory model (RF, plus IF in shadow mode) uses 14 window features. The CICIDS2017 benchmark

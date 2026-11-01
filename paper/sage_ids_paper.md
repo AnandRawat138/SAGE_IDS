@@ -139,8 +139,10 @@ random stratified split RF F1 0.9977; unseen-day split RF F1 0.540 (recall 0.370
 the optimism of random-split evaluation for unseen attack families.
 
 ### 5.7 Multi-seed stability
-`[multiseed: pending]` Across seeds {20261030, 20261101, 20261102}, case decisions and held-out
-detection rates are reported with spread in `reports/multiseed/multiseed_report.md`.
+Across three seeds the decisions are identical (guessing/flood accepted, recon rejected) and held-out
+detection is flood 0.00->1.00, guessing 0.00->0.90, recon 1.00->1.00. The timing-integrity check flagged
+two over-long recon baseline trials in one seed (host CPU contention, not a suspend); outcomes unaffected.
+See `reports/multiseed/multiseed_report.md`.
 
 ## 6. Discussion and limitations
 Laboratory realism (loopback, synthetic benign, limited scenarios); scripted operator; evadable fixes
