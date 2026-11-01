@@ -31,6 +31,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
+packet = ["scapy>=2.5"]   # real loopback packet capture (requires Npcap with loopback support)
 
 [project.scripts]
 sage-ids = "sage_ids.cli:main"
@@ -41,4 +42,7 @@ include = ["sage_ids*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
-markers = ["lab: runs a real loopback laboratory (slow, ~1-2 min)"]
+markers = [
+    "lab: runs a real loopback laboratory (slow, ~1-2 min)",
+    "packet: requires scapy + Npcap loopback capture",
+]
