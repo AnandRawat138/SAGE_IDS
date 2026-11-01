@@ -1,4 +1,5 @@
-*.pdf
+# compiled LaTeX output (keep figures/*.pdf tracked)
+/sage_ids.pdf
 *.aux
 *.bbl
 *.blg
